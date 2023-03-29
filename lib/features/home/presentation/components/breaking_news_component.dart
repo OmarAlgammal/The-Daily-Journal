@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:the_daily_journal/shared/constance/colors.dart';
-import 'package:the_daily_journal/shared/constance/icons.dart';
-import 'package:the_daily_journal/shared/widgets/page_view_item.dart';
 
-import '../../features/home/domain/entities/news.dart';
-import '../constance/gaps.dart';
+import '../../../../shared/constance/colors.dart';
+import '../../../../shared/constance/gaps.dart';
+import '../../../../shared/widgets/breaking_news_item.dart';
+import '../../domain/entities/news.dart';
 
-class PageViewIndicator extends StatelessWidget {
-  PageViewIndicator({Key? key, required this.news}) : super(key: key);
+class BreakingNewsComponent extends StatelessWidget {
+  BreakingNewsComponent({Key? key, required this.news}) : super(key: key);
 
   final List<News> news;
-  final _pageViewController = PageController(initialPage: 1, keepPage: true, viewportFraction: .9);
+  final _pageViewController =
+      PageController(initialPage: 1, keepPage: true, viewportFraction: .9);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,7 +26,9 @@ class PageViewIndicator extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: PageViewItem(news: news[index],),
+                child: BreakingNewsItem(
+                  news: news[index],
+                ),
               );
             },
           ),

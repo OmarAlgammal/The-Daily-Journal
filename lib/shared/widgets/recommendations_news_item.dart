@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
 
 import '../../features/home/domain/entities/news.dart';
 import '../constance/gaps.dart';
@@ -9,11 +10,13 @@ class NewsItem extends StatelessWidget {
 
   final News news;
 
+  /// height: 108, width: 112
   @override
   Widget build(BuildContext context) {
+    debugPrint('height is ${context.screenHeight()} and width is ${context.screenWidth()}');
     return SizedBox(
-      height: 108,
-      width: 112,
+      height: context.screenHeight() / 7.2,
+      width: context.screenWidth() / 7,
       child: Row(
         children: [
           ClipRRect(
