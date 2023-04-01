@@ -9,6 +9,11 @@ articles by keyword. Bookmark articles for later reading. Support for light and 
 Multiple language support (English, Arabic.). User authentication and data storage
 with Firebase. Screenshots Insert some screenshots of your app to showcase its design and features.
 
+## Screenshots
+<div>
+    <img src="Screenshot_1680359651.png" width="400" />
+</div>
+
 ## Getting Started
 
 To get started with the app, follow these steps:
