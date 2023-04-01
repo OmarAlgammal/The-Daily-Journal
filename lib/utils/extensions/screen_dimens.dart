@@ -1,6 +1,0 @@
-
-
-
-extension ScreenDimen on BuildContext{
-
-}
