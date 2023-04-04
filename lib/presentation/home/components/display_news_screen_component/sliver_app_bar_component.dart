@@ -35,7 +35,7 @@ class SliverAppBarComponent extends StatelessWidget {
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  stops: [
+                  stops: const [
                     0,
                     0.2,
                     0.45,
