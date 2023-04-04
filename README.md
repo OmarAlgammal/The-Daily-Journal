@@ -11,7 +11,9 @@ with Firebase. Screenshots Insert some screenshots of your app to showcase its d
 
 ## Screenshots
 <div>
-    <img src="screen_1.gif" width="400" />
+    <img src="video_1.gif" width="300" />
+    <img src="video_2.gif" width="300" />
+    <img src="video_3.gif" width="300" />
 </div>
 
 ## Getting Started
