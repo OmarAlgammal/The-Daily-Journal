@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:the_daily_journal/presentation/bottom_nav/screens/bottom_nav_screen.dart';
 import 'package:the_daily_journal/presentation/bookmarks/screens/bookmarks_screen.dart';
-import 'package:the_daily_journal/presentation/news/screens/display_news_screen.dart';
-import 'package:the_daily_journal/presentation/news/screens/home_screen.dart';
+import 'package:the_daily_journal/presentation/home/screens/display_news_screen.dart';
+import 'package:the_daily_journal/presentation/home/screens/home_screen.dart';
 import 'package:the_daily_journal/routing/routes.dart';
 
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:the_daily_journal/presentation/news/components/display_news_screen_component/sliver_app_bar_component.dart';
-import 'package:the_daily_journal/presentation/news/components/display_news_screen_component/sliver_list_component.dart';
+import 'package:the_daily_journal/presentation/home/components/display_news_screen_component/sliver_app_bar_component.dart';
+import 'package:the_daily_journal/presentation/home/components/display_news_screen_component/sliver_list_component.dart';
 
 import '../../../domain/news/entities/news.dart';
 

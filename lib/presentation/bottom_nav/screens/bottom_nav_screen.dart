@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:the_daily_journal/presentation/news/screens/home_screen.dart';
+import 'package:the_daily_journal/presentation/home/screens/home_screen.dart';
 import 'package:the_daily_journal/shared/constance/icons.dart';
 
 import '../../bookmarks/screens/bookmarks_screen.dart';
@@ -12,7 +12,7 @@ class BottomNavScreen extends StatelessWidget {
   final _bottomNavBarController = PersistentTabController();
 
   List<Widget> _buildScreens() {
-    return [
+    return const [
       HomeScreen(),
       SizedBox(),
       BookmarksScreen(),
@@ -53,7 +53,7 @@ class BottomNavScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PersistentTabView(
-        padding: NavBarPadding.all(0.0),
+        padding: const NavBarPadding.all(0.0),
         context,
         controller: _bottomNavBarController,
         screens: _buildScreens(),
@@ -69,11 +69,11 @@ class BottomNavScreen extends StatelessWidget {
         ),
         popAllScreensOnTapOfSelectedTab: true,
         popActionScreens: PopActionScreensType.all,
-        itemAnimationProperties: ItemAnimationProperties(
+        itemAnimationProperties: const ItemAnimationProperties(
           duration: Duration(milliseconds: 200),
           curve: Curves.ease,
         ),
-        screenTransitionAnimation: ScreenTransitionAnimation(
+        screenTransitionAnimation: const ScreenTransitionAnimation(
           animateTabTransition: true,
           curve: Curves.ease,
           duration: Duration(milliseconds: 200),

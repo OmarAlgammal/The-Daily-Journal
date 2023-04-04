@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:the_daily_journal/shared/constance/colors.dart';
 
 class NewsTitle extends StatelessWidget {
   const NewsTitle({Key? key, required this.title}) : super(key: key);
@@ -15,7 +14,7 @@ class NewsTitle extends StatelessWidget {
         ),),
         Text('View all', style: Theme.of(context).textTheme.titleSmall!.copyWith(
           fontWeight: FontWeight.bold,
-          color: brightBlueColor,
+          color: Theme.of(context).colorScheme.primary,
         ),)
       ],
     );
