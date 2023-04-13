@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "76431284610",
+    "project_id": "the-daily-journal-bbbf4",
+    "storage_bucket": "the-daily-journal-bbbf4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76431284610:android:e27a6ef420a686958e179b",
+        "android_client_info": {
+          "package_name": "com.example.the_daily_journal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76431284610-bpfi4slrn6q1r09ef3vokoe1obfvb549.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5nr7nB65c6TiELurEVT4dBuubCxdKyB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76431284610-bpfi4slrn6q1r09ef3vokoe1obfvb549.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
