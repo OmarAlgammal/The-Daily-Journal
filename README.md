@@ -1,15 +1,14 @@
 # The Journal News App
 
-The Journal News App is a news reader app with a simple and amazing design, powered by Flutter. The app uses the Clean Architecture pattern for its structure, with BLoC (Business Logic Component) for state management, and SOLID principles to ensure a maintainable and scalable codebase. The app also integrates with an API to fetch news data and uses Firebase for user authentication and data storage. Additionally, the app includes features like light and dark themes and supports multiple languages.
-
-## Features
-
-Browse news articles from various sources. Filter articles by category, keyword, or date. Search for
-articles by keyword. Bookmark articles for later reading. Support for light and dark themes.
-Multiple language support (English, Arabic.). User authentication and data storage
-with Firebase. Screenshots Insert some screenshots of your app to showcase its design and features.
+The Journal News App is a news reader app with a simple and amazing design, powered by Flutter. The
+app uses the Clean Architecture pattern for its structure, with BLoC (Business Logic Component) for
+state management, and SOLID principles to ensure a maintainable and scalable codebase. The app also
+integrates with an API to fetch news data and uses Firebase for user authentication and data
+storage. Additionally, the app includes features like light and dark themes and supports multiple
+languages.
 
 ## Screenshots
+
 <div>
     <img src="video_1.gif" width="300" />
     <img src="video_2.gif" width="300" />
@@ -35,7 +34,7 @@ If you encounter an error or a bug while using the app, please follow these step
 * Tap on the "Report an Issue" button
 * Fill out the form with a detailed
 * description of the error
-* Submit the form. 
+* Submit the form.
 
 We appreciate your feedback and will work to address any issues as soon as possible.
 
@@ -46,7 +45,6 @@ If you would like to contribute to the app, you can follow these steps:
 * Fork this repository
 * Make changes to the codebase
 * Submit a pull request
-
 
 ## Credits
 

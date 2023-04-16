@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:the_daily_journal/utils/constance/icons.dart';
 import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
+import 'package:the_daily_journal/utils/helpers/date_factory.dart';
+import 'package:the_daily_journal/view_model/bookmarks_cubit/bookmark_cubit.dart';
 
 import '../../models/news_model.dart';
 import '../../routing/routes.dart';
 import '../../utils/constance/gaps.dart';
+import '../../utils/constance/padding.dart';
 
-class RecommendationsNewsItem extends StatelessWidget {
-  const RecommendationsNewsItem({Key? key, required this.news})
+class NewsItem extends StatelessWidget {
+  const NewsItem({Key? key, required this.news, this.showBookmark = false})
       : super(key: key);
 
   final NewsModel news;
+  final bool showBookmark;
 
-  /// height: 108, width: 112
   @override
   Widget build(BuildContext context) {
     final newsImageHeight = context.screenHeight() / 7.2;
@@ -34,6 +37,15 @@ class RecommendationsNewsItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0),
               child: Image.network(
                 news.imageUrl,
+                errorBuilder: (BuildContext context, Object exception,
+                    StackTrace? stackTrace) {
+                  return Container(
+                    height: newsImageHeight,
+                    width: newsImageWidth,
+                    color: Theme.of(context).colorScheme.surface,
+                    child: const Center(child: Text('unavailable')),
+                  );
+                },
                 fit: BoxFit.cover,
                 height: newsImageHeight,
                 width: newsImageWidth,
@@ -46,11 +58,26 @@ class RecommendationsNewsItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // category
-                  Text(
-                    news.category,
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          color: Colors.grey,
-                        ),
+                  Row(
+                    children: [
+                      Text(
+                        news.category!,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                              color: Colors.grey,
+                            ),
+                      ),
+                      const Spacer(),
+                      if (showBookmark)
+                        InkWell(
+                          onTap: (){
+                            BookmarkCubit.instance(context)
+                                .deleteBookmark(news.title);
+                          },
+                          child: const Icon(
+                            bookmarkIcon,
+                          ),
+                        )
+                    ],
                   ),
                   // title
                   Text(
@@ -66,28 +93,29 @@ class RecommendationsNewsItem extends StatelessWidget {
                       CircleAvatar(
                         radius: authorImageRadius,
                         backgroundImage: NetworkImage(
-                          news.authorImageUrl,
+                          news.authorImageUrl!,
                         ),
                       ),
                       gap4,
-                      Text(
-                        news.authorName,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(color: Colors.grey),
+                      Expanded(
+                        child: Text(
+                          news.authorName,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.onSurface,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                        ),
                       ),
-                      const Spacer(),
                       const CircleAvatar(
                         backgroundColor: Colors.grey,
                         radius: 2,
                       ),
                       gap4,
                       Text(
-                        DateFormat.MMMd()
-                            .add_y()
-                            .format(DateTime.now())
-                            .toString(),
+                        DateFactory.formatDate(news.publishedDate),
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall!

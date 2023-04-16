@@ -20,15 +20,27 @@ NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NewsModel {
+  @HiveField(0)
   String get sourceName => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get sourceLogoUrl => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get category => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get authorName => throw _privateConstructorUsedError;
+  @HiveField(4)
   String get authorImageUrl => throw _privateConstructorUsedError;
+  @HiveField(5)
   String get title => throw _privateConstructorUsedError;
+  @HiveType(typeId: 6)
   String get description => throw _privateConstructorUsedError;
+  @HiveType(typeId: 7)
+  String get content => throw _privateConstructorUsedError;
+  @HiveType(typeId: 8)
   String get url => throw _privateConstructorUsedError;
+  @HiveType(typeId: 9)
   String get imageUrl => throw _privateConstructorUsedError;
+  @HiveType(typeId: 10)
   DateTime get publishedDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,16 +55,17 @@ abstract class $NewsModelCopyWith<$Res> {
       _$NewsModelCopyWithImpl<$Res, NewsModel>;
   @useResult
   $Res call(
-      {String sourceName,
-      String sourceLogoUrl,
-      String category,
-      String authorName,
-      String authorImageUrl,
-      String title,
-      String description,
-      String url,
-      String imageUrl,
-      DateTime publishedDate});
+      {@HiveField(0) String sourceName,
+      @HiveField(1) String sourceLogoUrl,
+      @HiveField(2) String category,
+      @HiveField(3) String authorName,
+      @HiveField(4) String authorImageUrl,
+      @HiveField(5) String title,
+      @HiveType(typeId: 6) String description,
+      @HiveType(typeId: 7) String content,
+      @HiveType(typeId: 8) String url,
+      @HiveType(typeId: 9) String imageUrl,
+      @HiveType(typeId: 10) DateTime publishedDate});
 }
 
 /// @nodoc
@@ -75,6 +88,7 @@ class _$NewsModelCopyWithImpl<$Res, $Val extends NewsModel>
     Object? authorImageUrl = null,
     Object? title = null,
     Object? description = null,
+    Object? content = null,
     Object? url = null,
     Object? imageUrl = null,
     Object? publishedDate = null,
@@ -108,6 +122,10 @@ class _$NewsModelCopyWithImpl<$Res, $Val extends NewsModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -131,16 +149,17 @@ abstract class _$$_NewsCopyWith<$Res> implements $NewsModelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String sourceName,
-      String sourceLogoUrl,
-      String category,
-      String authorName,
-      String authorImageUrl,
-      String title,
-      String description,
-      String url,
-      String imageUrl,
-      DateTime publishedDate});
+      {@HiveField(0) String sourceName,
+      @HiveField(1) String sourceLogoUrl,
+      @HiveField(2) String category,
+      @HiveField(3) String authorName,
+      @HiveField(4) String authorImageUrl,
+      @HiveField(5) String title,
+      @HiveType(typeId: 6) String description,
+      @HiveType(typeId: 7) String content,
+      @HiveType(typeId: 8) String url,
+      @HiveType(typeId: 9) String imageUrl,
+      @HiveType(typeId: 10) DateTime publishedDate});
 }
 
 /// @nodoc
@@ -159,6 +178,7 @@ class __$$_NewsCopyWithImpl<$Res> extends _$NewsModelCopyWithImpl<$Res, _$_News>
     Object? authorImageUrl = null,
     Object? title = null,
     Object? description = null,
+    Object? content = null,
     Object? url = null,
     Object? imageUrl = null,
     Object? publishedDate = null,
@@ -192,6 +212,10 @@ class __$$_NewsCopyWithImpl<$Res> extends _$NewsModelCopyWithImpl<$Res, _$_News>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -212,43 +236,57 @@ class __$$_NewsCopyWithImpl<$Res> extends _$NewsModelCopyWithImpl<$Res, _$_News>
 @JsonSerializable()
 class _$_News implements _News {
   _$_News(
-      {required this.sourceName,
-      required this.sourceLogoUrl,
-      required this.category,
-      required this.authorName,
-      required this.authorImageUrl,
-      required this.title,
-      required this.description,
-      required this.url,
-      required this.imageUrl,
-      required this.publishedDate});
+      {@HiveField(0) required this.sourceName,
+      @HiveField(1) required this.sourceLogoUrl,
+      @HiveField(2) required this.category,
+      @HiveField(3) required this.authorName,
+      @HiveField(4) required this.authorImageUrl,
+      @HiveField(5) required this.title,
+      @HiveType(typeId: 6) required this.description,
+      @HiveType(typeId: 7) required this.content,
+      @HiveType(typeId: 8) required this.url,
+      @HiveType(typeId: 9) required this.imageUrl,
+      @HiveType(typeId: 10) required this.publishedDate});
 
   factory _$_News.fromJson(Map<String, dynamic> json) => _$$_NewsFromJson(json);
 
   @override
+  @HiveField(0)
   final String sourceName;
   @override
+  @HiveField(1)
   final String sourceLogoUrl;
   @override
+  @HiveField(2)
   final String category;
   @override
+  @HiveField(3)
   final String authorName;
   @override
+  @HiveField(4)
   final String authorImageUrl;
   @override
+  @HiveField(5)
   final String title;
   @override
+  @HiveType(typeId: 6)
   final String description;
   @override
+  @HiveType(typeId: 7)
+  final String content;
+  @override
+  @HiveType(typeId: 8)
   final String url;
   @override
+  @HiveType(typeId: 9)
   final String imageUrl;
   @override
+  @HiveType(typeId: 10)
   final DateTime publishedDate;
 
   @override
   String toString() {
-    return 'NewsModel(sourceName: $sourceName, sourceLogoUrl: $sourceLogoUrl, category: $category, authorName: $authorName, authorImageUrl: $authorImageUrl, title: $title, description: $description, url: $url, imageUrl: $imageUrl, publishedDate: $publishedDate)';
+    return 'NewsModel(sourceName: $sourceName, sourceLogoUrl: $sourceLogoUrl, category: $category, authorName: $authorName, authorImageUrl: $authorImageUrl, title: $title, description: $description, content: $content, url: $url, imageUrl: $imageUrl, publishedDate: $publishedDate)';
   }
 
   @override
@@ -269,6 +307,7 @@ class _$_News implements _News {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.content, content) || other.content == content) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
@@ -287,6 +326,7 @@ class _$_News implements _News {
       authorImageUrl,
       title,
       description,
+      content,
       url,
       imageUrl,
       publishedDate);
@@ -307,38 +347,52 @@ class _$_News implements _News {
 
 abstract class _News implements NewsModel {
   factory _News(
-      {required final String sourceName,
-      required final String sourceLogoUrl,
-      required final String category,
-      required final String authorName,
-      required final String authorImageUrl,
-      required final String title,
-      required final String description,
-      required final String url,
-      required final String imageUrl,
-      required final DateTime publishedDate}) = _$_News;
+      {@HiveField(0) required final String sourceName,
+      @HiveField(1) required final String sourceLogoUrl,
+      @HiveField(2) required final String category,
+      @HiveField(3) required final String authorName,
+      @HiveField(4) required final String authorImageUrl,
+      @HiveField(5) required final String title,
+      @HiveType(typeId: 6) required final String description,
+      @HiveType(typeId: 7) required final String content,
+      @HiveType(typeId: 8) required final String url,
+      @HiveType(typeId: 9) required final String imageUrl,
+      @HiveType(typeId: 10) required final DateTime publishedDate}) = _$_News;
 
   factory _News.fromJson(Map<String, dynamic> json) = _$_News.fromJson;
 
   @override
+  @HiveField(0)
   String get sourceName;
   @override
+  @HiveField(1)
   String get sourceLogoUrl;
   @override
+  @HiveField(2)
   String get category;
   @override
+  @HiveField(3)
   String get authorName;
   @override
+  @HiveField(4)
   String get authorImageUrl;
   @override
+  @HiveField(5)
   String get title;
   @override
+  @HiveType(typeId: 6)
   String get description;
   @override
+  @HiveType(typeId: 7)
+  String get content;
+  @override
+  @HiveType(typeId: 8)
   String get url;
   @override
+  @HiveType(typeId: 9)
   String get imageUrl;
   @override
+  @HiveType(typeId: 10)
   DateTime get publishedDate;
   @override
   @JsonKey(ignore: true)

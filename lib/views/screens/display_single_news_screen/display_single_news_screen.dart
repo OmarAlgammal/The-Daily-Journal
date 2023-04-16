@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:the_daily_journal/views/screens/display_news_screen/components/sliver_app_bar_component.dart';
+import 'package:the_daily_journal/views/screens/display_single_news_screen/components/sliver_app_bar_component.dart';
 
 import '../../../models/news_model.dart';
 import 'components/sliver_list_component.dart';
 
-class DisplayNewsScreen extends StatelessWidget {
-  const DisplayNewsScreen({
+class DisplaySingleNewsScreen extends StatelessWidget {
+  const DisplaySingleNewsScreen({
     Key? key,
   }) : super(key: key);
 

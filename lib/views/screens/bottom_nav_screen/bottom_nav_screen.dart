@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:the_daily_journal/utils/theme/dark_theme/dartk_theme.dart';
+import 'package:the_daily_journal/views/screens/discover_world_screen/discover_world_screen.dart';
 import 'package:the_daily_journal/views/screens/home_screen/home_screen.dart';
 import 'package:the_daily_journal/views/screens/profile_screen/profile_screen.dart';
+import 'package:the_daily_journal/views/screens/world_screen/world_screen.dart';
 
 import '../../../utils/constance/icons.dart';
 import '../bookmarks_screen/bookmarks_screen.dart';
@@ -13,11 +16,11 @@ class BottomNavScreen extends StatelessWidget {
   final _bottomNavBarController = PersistentTabController();
 
   List<Widget> _buildScreens() {
-    return const [
-      HomeScreen(),
-      SizedBox(),
+    return [
+      const HomeScreen(),
+      const WorldScreen(),
       BookmarksScreen(),
-      ProfileScreen(),
+      const ProfileScreen(),
     ];
   }
 
@@ -54,6 +57,7 @@ class BottomNavScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PersistentTabView(
+        backgroundColor: Theme.of(context).colorScheme.background,
         padding: const NavBarPadding.all(0.0),
         context,
         controller: _bottomNavBarController,
@@ -66,7 +70,7 @@ class BottomNavScreen extends StatelessWidget {
         hideNavigationBarWhenKeyboardShows: true,
         decoration: NavBarDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          colorBehindNavBar: Colors.white,
+          colorBehindNavBar: Theme.of(context).colorScheme.background,
         ),
         popAllScreensOnTapOfSelectedTab: true,
         popActionScreens: PopActionScreensType.all,

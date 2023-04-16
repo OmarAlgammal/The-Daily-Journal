@@ -11,11 +11,11 @@ class BookmarksLoading extends BookmarkState{
 }
 
 class BookmarksLoadedSuccessfully extends BookmarkState{
-  final List<NewsModel> bookmark;
-  BookmarksLoadedSuccessfully({required this.bookmark});
+  final List<NewsModel> bookmarks;
+  BookmarksLoadedSuccessfully({required this.bookmarks});
 
   @override
-  List<Object?> get props => [bookmark];
+  List<Object?> get props => [bookmarks];
 }
 
 class BookmarkIsBeingSaved extends BookmarkState{
@@ -24,8 +24,10 @@ class BookmarkIsBeingSaved extends BookmarkState{
 
 }
 class BookmarkSavedSuccessfully extends BookmarkState{
+  final String id;
+  BookmarkSavedSuccessfully(this.id);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [id];
 
 }
 
@@ -34,8 +36,21 @@ class FailedToLoadBookmarks extends BookmarkState{
   List<Object?> get props => [];
 }
 
+
+class DeletingBookmark extends BookmarkState{
+  @override
+  List<Object?> get props => [];
+}
+
 class BookmarkDeletedSuccessfully extends BookmarkState{
   @override
   List<Object?> get props => [];
 
+}
+
+class Failed extends BookmarkState{
+  final String message;
+  Failed(this.message);
+  @override
+  List<Object?> get props => [message];
 }

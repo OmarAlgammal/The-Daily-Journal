@@ -9,5 +9,6 @@ class AppRouts{
   static const String displayNewsScreen = 'display-news-screen';
   static const String bookmarksScreen = 'bookmarks-screen';
   static const String profileScreen = 'profile-screen';
-  static const String viewAllNewsScreen = 'view-all-news-screen';
+  static const String discoverWorldScreen = 'discover-world-screen';
+  static const String searchScreen = 'search-screen';
 }

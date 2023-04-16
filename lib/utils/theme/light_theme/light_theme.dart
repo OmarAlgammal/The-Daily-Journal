@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:the_daily_journal/utils/constance/padding.dart';
 
-import 'light_theme_color.dart';
+import 'light_theme_colors.dart';
 
 ThemeData lightTheme() => ThemeData(
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark,
@@ -15,26 +16,27 @@ ThemeData lightTheme() => ThemeData(
     ),
     iconButtonTheme: IconButtonThemeData(
       style: ButtonStyle(
-        padding: MaterialStateProperty.all(EdgeInsets.all(8.0),),
+        padding: MaterialStateProperty.all(padding8,),
         iconSize: MaterialStateProperty.all(18.0),
         iconColor: MaterialStateProperty.all(LightThemeColors.iconColor)
       )
       /// TODO: Complete icon button theem
     ),
-    iconTheme: IconThemeData(
+    iconTheme: const IconThemeData(
       color: LightThemeColors.primaryColor,
     ),
-    primaryIconTheme: IconThemeData(
+    primaryIconTheme: const IconThemeData(
       color: LightThemeColors.primaryColor,
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: LightThemeColors.bottomNavBackgroundColor,
       elevation: 0.0,
       showSelectedLabels: true,
       selectedItemColor: LightThemeColors.bottomNavSelectedItemColor,
       type: BottomNavigationBarType.shifting,
     ),
-    colorScheme: ColorScheme(
+    scaffoldBackgroundColor: LightThemeColors.backgroundColor,
+    colorScheme: const ColorScheme(
       background: LightThemeColors.backgroundColor,
       onBackground: LightThemeColors.onBackgroundColor,
       brightness: Brightness.light,

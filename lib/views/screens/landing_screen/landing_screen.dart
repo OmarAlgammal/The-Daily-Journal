@@ -11,7 +11,7 @@ class LandingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
-      stream: AuthCubit.instance(context).checkRegistration(),
+      stream: AuthCubit.of(context).checkRegistration(),
       builder: (context, snapshot) {
         if ([ConnectionState.active, ConnectionState.done]
             .contains(snapshot.connectionState)) {

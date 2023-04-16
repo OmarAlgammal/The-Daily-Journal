@@ -6,7 +6,7 @@ class CircularIcon extends StatelessWidget {
   const CircularIcon(
       {Key? key,
       this.icon,
-      required this.onTap,
+      this.onTap,
       this.color,
       this.fillColor,
       this.showNotificationState = false})
@@ -16,7 +16,7 @@ class CircularIcon extends StatelessWidget {
   final Color? color;
   final Color? fillColor;
   final bool showNotificationState;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class CircularIcon extends StatelessWidget {
         width: 42,
         decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: fillColor ?? brightGreyColor,
+            color: fillColor ?? Theme.of(context).colorScheme.surface,
             boxShadow: [
               BoxShadow(
                   color: blackColor.withOpacity(.2),
@@ -40,7 +40,7 @@ class CircularIcon extends StatelessWidget {
               Icon(
                 icon,
                 size: 20,
-                color: color ?? Theme.of(context).colorScheme.onPrimary,
+                color: color ?? Theme.of(context).colorScheme.background,
               ),
               if (showNotificationState)
                 Positioned(

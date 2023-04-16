@@ -27,7 +27,7 @@ class NewsTitle extends StatelessWidget {
                 ),
           ),
           onPressed: () {
-            Navigator.of(context, rootNavigator: true).pushNamed(AppRouts.viewAllNewsScreen);
+            Navigator.of(context, rootNavigator: true).pushNamed(AppRouts.discoverWorldScreen);
           },
         )
       ],

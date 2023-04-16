@@ -11,7 +11,7 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._baseFirebaseAuth) : super(AuthState.registrationIsBeingVerifiedState());
 
 
-  static AuthCubit instance (context) => BlocProvider.of<AuthCubit>(context);
+  static AuthCubit of (context) => BlocProvider.of<AuthCubit>(context);
 
   Stream<User?> checkRegistration() => _baseFirebaseAuth.authStateChanges();
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_daily_journal/routing/routes.dart';
 
 import '../../../../utils/constance/gaps.dart';
 import '../../../../utils/constance/icons.dart';
@@ -21,7 +22,7 @@ class HomeAppBarComponent extends StatelessWidget
         ),
         const Spacer(),
         CircularIcon(icon: searchIcon, onTap: (){
-          /// TODO: Complete this action
+          Navigator.of(context, rootNavigator: true).pushNamed(AppRouts.searchScreen);
         },),
         gap8,
         CircularIcon(

@@ -5,13 +5,15 @@ import 'package:the_daily_journal/routing/routes.dart';
 import 'package:the_daily_journal/utils/constance/border_radius.dart';
 import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
 import 'package:the_daily_journal/view_model/auth_cubit/auth_cubit.dart';
+import 'package:the_daily_journal/views/screens/sign_in_screen/components/continue_with_services_component.dart';
 import 'package:the_daily_journal/views/widgets/my_button.dart';
 
 import '../../../utils/constance/gaps.dart';
 import '../../../utils/constance/icons.dart';
 import '../../../utils/constance/padding.dart';
 import '../../../utils/theme/colors.dart';
-import 'components/register_item.dart';
+import '../../widgets/register_item.dart';
+import 'components/sign_in_with_email_component.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -39,62 +41,8 @@ class SignInScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Flexible(
-                flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Email',
-                          border: OutlineInputBorder(
-                        borderRadius: circular8,
-                      )),
-                    ),
-                    gap18,
-                    MyButton(onPressed: () {}, buttonName: 'Continue'),
-                    gap36,
-                    Text('Or'),
-                  ],
-                ),
-              ),
-              Flexible(
-                flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    RegisterItemDesign(
-                      icon: facebookIcon,
-                      iconColor: blueColor,
-                      registrationText: 'Continue With Facebook',
-                      onPressed: () {
-                        /// TODO: Sign in with Facebook
-                      },
-                    ),
-                    gap16,
-                    RegisterItemDesign(
-                      svgPicture: SvgPicture.asset(
-                        'assets/google.svg',
-                        height: context.screenWidth() * .10,
-                      ),
-                      iconColor: blueColor,
-                      registrationText: 'Continue in with Google',
-                      onPressed: () {
-                        AuthCubit.instance(context).signInWithGoogle();
-                      },
-                    ),
-                    gap16,
-                    RegisterItemDesign(
-                      icon: appleIcon,
-                      iconColor: blackColor,
-                      registrationText: 'Continue with Apple',
-                      onPressed: () {
-                        // TODO: sing in with Apple
-                      },
-                    ),
-                  ],
-                ),
-              ),
+              const SignInWithEmailComponent(),
+              const ContinueWithServicesComponent(),
               Flexible(
                 flex: 0,
                 child: Align(

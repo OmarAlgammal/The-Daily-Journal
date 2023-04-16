@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_daily_journal/database/local_database.dart';
 import 'package:the_daily_journal/models/news_model.dart';
 import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
+import 'package:the_daily_journal/utils/helpers/date_factory.dart';
 
+import '../../../../services_locator/services_locator.dart';
 import '../../../../utils/constance/gaps.dart';
 import '../../../../utils/constance/icons.dart';
 import '../../../../utils/theme/colors.dart';
@@ -13,6 +16,7 @@ import '../../../widgets/circular_icon.dart';
 class SliverAppBarComponent extends StatelessWidget {
   const SliverAppBarComponent({Key? key, required this.news}) : super(key: key);
   final NewsModel news;
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +50,13 @@ class SliverAppBarComponent extends StatelessWidget {
               child: Image.network(
                 news.imageUrl,
                 fit: BoxFit.cover,
+                errorBuilder: (BuildContext context, Object exception,
+                    StackTrace? stackTrace) {
+                  return Container(
+                    color: Theme.of(context).colorScheme.surface,
+                    child: const Center(child: Text('unavailable')),
+                  );
+                },
               ),
             ),
             Positioned(
@@ -66,7 +77,7 @@ class SliverAppBarComponent extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 8),
                         child: Text(
-                          news.category,
+                          news.category!,
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall!
@@ -95,7 +106,7 @@ class SliverAppBarComponent extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          'Trending  •  5 hours ago',
+                          'Trending  •  ${DateFactory.calculateElapsedTime(date: news.publishedDate)}',
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
@@ -117,13 +128,13 @@ class SliverAppBarComponent extends StatelessWidget {
         ),
       ),
       bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(45),
+          preferredSize: const Size.fromHeight(36),
           child: Transform.translate(
             offset: const Offset(0, 1),
             child: Container(
-              height: 45,
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              height: 36,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.background,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),
@@ -142,16 +153,28 @@ class SliverAppBarComponent extends StatelessWidget {
           color: Theme.of(context).colorScheme.background,
           fillColor: Theme.of(context).colorScheme.onSurface.withOpacity(.4),
         ),
-        Spacer(),
-        BlocBuilder<BookmarkCubit, BookmarkState>(builder: (context, state) {
+        const Spacer(),
+        BlocBuilder<BookmarkCubit, BookmarkState>(
+          buildWhen: (context, state){
+            if ([BookmarkSavedSuccessfully, BookmarkDeletedSuccessfully].contains(state.runtimeType)){
+              return true;
+            }
+            return false;
+          },
+            builder: (context, state) {
+              final saved = sl<LocalDatabase>().checkSave(news.title);
           return CircularIcon(
-            icon: state is BookmarkSavedSuccessfully
+            icon: saved
                 ? bookmarkIcon
                 : outlinedBookmarkIcon,
             onTap: () {
-              BookmarkCubit.instance(context).saveAsBookmark();
+              if (saved){
+                BookmarkCubit.instance(context).deleteBookmark(news.title);
+              }else{
+                BookmarkCubit.instance(context).saveAsBookmark(news);
+              }
             },
-            color: Theme.of(context).colorScheme.background,
+            //color: Theme.of(context).iconTheme.color,
             fillColor: Theme.of(context).colorScheme.onSurface.withOpacity(.4),
           );
         }),

@@ -1,8 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:the_daily_journal/utils/constance/gaps.dart';
 import 'package:the_daily_journal/utils/constance/padding.dart';
+import 'package:the_daily_journal/view_model/auth_cubit/auth_cubit.dart';
+import 'package:the_daily_journal/view_model/auth_cubit/auth_states.dart';
+import 'package:the_daily_journal/view_model/theme_provider/theme_provider.dart';
 import 'package:the_daily_journal/views/widgets/my_button.dart';
+import 'package:get_it/get_it.dart';
+
+import '../../../services/firebase_auth_service.dart';
+import '../../../services_locator/services_locator.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -13,8 +23,6 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
 
-  bool darkTheme = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,49 +32,53 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Omar Algammal', style: Theme.of(context).textTheme.headlineSmall,),
+              Text('${sl<FirebaseAuthentication>().currentUser?.displayName}', style: Theme.of(context).textTheme.headlineSmall,),
               gap12,
-              Text('devomar24@gmail.com', style: Theme.of(context).textTheme.bodyMedium,),
+              Text('${sl<FirebaseAuthentication>().currentUser?.email}', style: Theme.of(context).textTheme.bodyMedium,),
               gap36,
-              Divider(
+              const Divider(
                 thickness: 2.0,
               ),
               gap16,
               ListTile(
-                title: Text('Dark theme'),
+                title: const Text('Dark theme'),
                 trailing: Switch(
                   onChanged: (value) {
-                    /// TODO: Comlete this action
                     setState(() {
-                      darkTheme = value;
+                      Provider.of<ThemeProvider>(context, listen: false).toggleThemeMode();
                     });
                   },
-                  value: darkTheme,
+                  value: Provider.of<ThemeProvider>(context,).isDarkMode,
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 2.0,
               ),
               gap16,
-              ListTile(
+              const ListTile(
                 title: Text('Notifications'),
-                subtitle: Text('Choose how you want to receive BBC news notifications'),
+                subtitle: Text('Choose how you want to receive news notifications'),
               ),
-              Divider(
+              const Divider(
                 thickness: 2.0,
               ),
-              ListTile(
+              const ListTile(
                 title: Text('Usage rules'),
               ),
-              ListTile(
+              const ListTile(
                 title: Text('Privacy policy'),
               ),
               const Spacer(),
-              MyButton(
-                onPressed: () {
-                  /// TODO: Complete sign out action
+              BlocBuilder<AuthCubit, AuthState>(
+                builder: (context , state){
+                  return MyButton(
+                    loadingState: state is SigningOut,
+                    onPressed: () {
+                      AuthCubit.of(context).signOut();
+                    },
+                    buttonName: 'Sign out',
+                  );
                 },
-                buttonName: 'Sign out',
               ),
               gap16
             ],
