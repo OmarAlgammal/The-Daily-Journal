@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
-    /// TODO: Dispose hive here
+    sl<LocalServices>().closeBox();
     super.dispose();
   }
 
