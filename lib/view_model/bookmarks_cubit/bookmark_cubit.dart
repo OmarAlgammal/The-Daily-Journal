@@ -1,5 +1,4 @@
 
-import 'package:flutter/animation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/database/local_database.dart';
 import 'package:the_daily_journal/models/news_model.dart';

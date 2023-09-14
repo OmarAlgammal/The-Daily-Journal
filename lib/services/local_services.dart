@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import '../models/news_model.dart';

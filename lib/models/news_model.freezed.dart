@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
-  return _News.fromJson(json);
-}
-
 /// @nodoc
 mixin _$NewsModel {
   @HiveField(0)
@@ -32,18 +28,17 @@ mixin _$NewsModel {
   String get authorImageUrl => throw _privateConstructorUsedError;
   @HiveField(5)
   String get title => throw _privateConstructorUsedError;
-  @HiveType(typeId: 6)
+  @HiveField(6)
   String get description => throw _privateConstructorUsedError;
-  @HiveType(typeId: 7)
+  @HiveField(7)
   String get content => throw _privateConstructorUsedError;
-  @HiveType(typeId: 8)
+  @HiveField(8)
   String get url => throw _privateConstructorUsedError;
-  @HiveType(typeId: 9)
+  @HiveField(9)
   String get imageUrl => throw _privateConstructorUsedError;
-  @HiveType(typeId: 10)
+  @HiveField(10)
   DateTime get publishedDate => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $NewsModelCopyWith<NewsModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -61,11 +56,11 @@ abstract class $NewsModelCopyWith<$Res> {
       @HiveField(3) String authorName,
       @HiveField(4) String authorImageUrl,
       @HiveField(5) String title,
-      @HiveType(typeId: 6) String description,
-      @HiveType(typeId: 7) String content,
-      @HiveType(typeId: 8) String url,
-      @HiveType(typeId: 9) String imageUrl,
-      @HiveType(typeId: 10) DateTime publishedDate});
+      @HiveField(6) String description,
+      @HiveField(7) String content,
+      @HiveField(8) String url,
+      @HiveField(9) String imageUrl,
+      @HiveField(10) DateTime publishedDate});
 }
 
 /// @nodoc
@@ -155,11 +150,11 @@ abstract class _$$_NewsCopyWith<$Res> implements $NewsModelCopyWith<$Res> {
       @HiveField(3) String authorName,
       @HiveField(4) String authorImageUrl,
       @HiveField(5) String title,
-      @HiveType(typeId: 6) String description,
-      @HiveType(typeId: 7) String content,
-      @HiveType(typeId: 8) String url,
-      @HiveType(typeId: 9) String imageUrl,
-      @HiveType(typeId: 10) DateTime publishedDate});
+      @HiveField(6) String description,
+      @HiveField(7) String content,
+      @HiveField(8) String url,
+      @HiveField(9) String imageUrl,
+      @HiveField(10) DateTime publishedDate});
 }
 
 /// @nodoc
@@ -233,7 +228,7 @@ class __$$_NewsCopyWithImpl<$Res> extends _$NewsModelCopyWithImpl<$Res, _$_News>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_News implements _News {
   _$_News(
       {@HiveField(0) required this.sourceName,
@@ -242,13 +237,11 @@ class _$_News implements _News {
       @HiveField(3) required this.authorName,
       @HiveField(4) required this.authorImageUrl,
       @HiveField(5) required this.title,
-      @HiveType(typeId: 6) required this.description,
-      @HiveType(typeId: 7) required this.content,
-      @HiveType(typeId: 8) required this.url,
-      @HiveType(typeId: 9) required this.imageUrl,
-      @HiveType(typeId: 10) required this.publishedDate});
-
-  factory _$_News.fromJson(Map<String, dynamic> json) => _$$_NewsFromJson(json);
+      @HiveField(6) required this.description,
+      @HiveField(7) required this.content,
+      @HiveField(8) required this.url,
+      @HiveField(9) required this.imageUrl,
+      @HiveField(10) required this.publishedDate});
 
   @override
   @HiveField(0)
@@ -269,19 +262,19 @@ class _$_News implements _News {
   @HiveField(5)
   final String title;
   @override
-  @HiveType(typeId: 6)
+  @HiveField(6)
   final String description;
   @override
-  @HiveType(typeId: 7)
+  @HiveField(7)
   final String content;
   @override
-  @HiveType(typeId: 8)
+  @HiveField(8)
   final String url;
   @override
-  @HiveType(typeId: 9)
+  @HiveField(9)
   final String imageUrl;
   @override
-  @HiveType(typeId: 10)
+  @HiveField(10)
   final DateTime publishedDate;
 
   @override
@@ -315,7 +308,6 @@ class _$_News implements _News {
                 other.publishedDate == publishedDate));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -336,13 +328,6 @@ class _$_News implements _News {
   @pragma('vm:prefer-inline')
   _$$_NewsCopyWith<_$_News> get copyWith =>
       __$$_NewsCopyWithImpl<_$_News>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_NewsToJson(
-      this,
-    );
-  }
 }
 
 abstract class _News implements NewsModel {
@@ -353,13 +338,11 @@ abstract class _News implements NewsModel {
       @HiveField(3) required final String authorName,
       @HiveField(4) required final String authorImageUrl,
       @HiveField(5) required final String title,
-      @HiveType(typeId: 6) required final String description,
-      @HiveType(typeId: 7) required final String content,
-      @HiveType(typeId: 8) required final String url,
-      @HiveType(typeId: 9) required final String imageUrl,
-      @HiveType(typeId: 10) required final DateTime publishedDate}) = _$_News;
-
-  factory _News.fromJson(Map<String, dynamic> json) = _$_News.fromJson;
+      @HiveField(6) required final String description,
+      @HiveField(7) required final String content,
+      @HiveField(8) required final String url,
+      @HiveField(9) required final String imageUrl,
+      @HiveField(10) required final DateTime publishedDate}) = _$_News;
 
   @override
   @HiveField(0)
@@ -380,19 +363,19 @@ abstract class _News implements NewsModel {
   @HiveField(5)
   String get title;
   @override
-  @HiveType(typeId: 6)
+  @HiveField(6)
   String get description;
   @override
-  @HiveType(typeId: 7)
+  @HiveField(7)
   String get content;
   @override
-  @HiveType(typeId: 8)
+  @HiveField(8)
   String get url;
   @override
-  @HiveType(typeId: 9)
+  @HiveField(9)
   String get imageUrl;
   @override
-  @HiveType(typeId: 10)
+  @HiveField(10)
   DateTime get publishedDate;
   @override
   @JsonKey(ignore: true)

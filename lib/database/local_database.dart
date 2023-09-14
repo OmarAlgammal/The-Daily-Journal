@@ -1,5 +1,4 @@
 
-import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:the_daily_journal/services/local_services.dart';
 

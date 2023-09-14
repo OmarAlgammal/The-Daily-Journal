@@ -1,34 +1,49 @@
 {
   "project_info": {
-    "project_number": "76431284610",
-    "project_id": "the-daily-journal-bbbf4",
-    "storage_bucket": "the-daily-journal-bbbf4.appspot.com"
+    "project_number": "1041768734596",
+    "project_id": "the-daily-journal-90f99",
+    "storage_bucket": "the-daily-journal-90f99.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:76431284610:android:e27a6ef420a686958e179b",
+        "mobilesdk_app_id": "1:1041768734596:android:49c84d9a6eb007954787d1",
         "android_client_info": {
           "package_name": "com.example.the_daily_journal"
         }
       },
       "oauth_client": [
         {
-          "client_id": "76431284610-bpfi4slrn6q1r09ef3vokoe1obfvb549.apps.googleusercontent.com",
+          "client_id": "1041768734596-437k2ccrg2or2iti65ca3o4e77vfmhvo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.the_daily_journal",
+            "certificate_hash": "3cb243a900dae962943db45d4c2c8b824439f1f7"
+          }
+        },
+        {
+          "client_id": "1041768734596-711b2f7rgmd2e9kmmsp16ffo29qh4e86.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA5nr7nB65c6TiELurEVT4dBuubCxdKyB4"
+          "current_key": "AIzaSyD1Viwt_ThixKM10p0ghEif1sI_CvLrYHQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "76431284610-bpfi4slrn6q1r09ef3vokoe1obfvb549.apps.googleusercontent.com",
+              "client_id": "1041768734596-711b2f7rgmd2e9kmmsp16ffo29qh4e86.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1041768734596-i2l9qdui1641aaceo2676did7r2j7agi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.theDailyJournal"
+              }
             }
           ]
         }

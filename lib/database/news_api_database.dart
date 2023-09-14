@@ -1,6 +1,5 @@
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:the_daily_journal/core/network/api_constance.dart';
 import 'package:the_daily_journal/services/news_api_services.dart';
 

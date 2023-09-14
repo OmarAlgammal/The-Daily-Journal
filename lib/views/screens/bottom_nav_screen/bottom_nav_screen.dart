@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:the_daily_journal/utils/theme/dark_theme/dartk_theme.dart';
-import 'package:the_daily_journal/views/screens/discover_world_screen/discover_world_screen.dart';
 import 'package:the_daily_journal/views/screens/home_screen/home_screen.dart';
 import 'package:the_daily_journal/views/screens/profile_screen/profile_screen.dart';
 import 'package:the_daily_journal/views/screens/world_screen/world_screen.dart';

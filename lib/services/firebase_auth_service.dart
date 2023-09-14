@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:the_daily_journal/core/network/erorrs/exceptions.dart';
 
 import '../core/network/erorrs/server_failure.dart';
 

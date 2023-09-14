@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:the_daily_journal/utils/constance/border_radius.dart';
-import 'package:the_daily_journal/view_model/auth_cubit/auth_cubit.dart';
-import 'package:the_daily_journal/view_model/auth_cubit/auth_states.dart';
 
 class MyButton extends StatelessWidget {
   const MyButton(

@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,41 +49,22 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDOy_cf6JDS_NRfEo-6st_7iGbVoJBOorY',
-    appId: '1:76431284610:web:a62ebf6a58e6c80b8e179b',
-    messagingSenderId: '76431284610',
-    projectId: 'the-daily-journal-bbbf4',
-    authDomain: 'the-daily-journal-bbbf4.firebaseapp.com',
-    storageBucket: 'the-daily-journal-bbbf4.appspot.com',
-    measurementId: 'G-S8DG34NVWT',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA5nr7nB65c6TiELurEVT4dBuubCxdKyB4',
-    appId: '1:76431284610:android:e27a6ef420a686958e179b',
-    messagingSenderId: '76431284610',
-    projectId: 'the-daily-journal-bbbf4',
-    storageBucket: 'the-daily-journal-bbbf4.appspot.com',
+    apiKey: 'AIzaSyD1Viwt_ThixKM10p0ghEif1sI_CvLrYHQ',
+    appId: '1:1041768734596:android:49c84d9a6eb007954787d1',
+    messagingSenderId: '1041768734596',
+    projectId: 'the-daily-journal-90f99',
+    storageBucket: 'the-daily-journal-90f99.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBKtOt82907-Lcks2D7e_jvPGmP95e8_WQ',
-    appId: '1:76431284610:ios:cb3b3e8240a697108e179b',
-    messagingSenderId: '76431284610',
-    projectId: 'the-daily-journal-bbbf4',
-    storageBucket: 'the-daily-journal-bbbf4.appspot.com',
-    iosClientId: '76431284610-f1jgtiu8e3eaqgpautkjvh43do18pd8i.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCNvNNpfJ3UckexxdBC1tSAXsV3N5D1NSc',
+    appId: '1:1041768734596:ios:70b1d5206cd24f1e4787d1',
+    messagingSenderId: '1041768734596',
+    projectId: 'the-daily-journal-90f99',
+    storageBucket: 'the-daily-journal-90f99.appspot.com',
+    androidClientId: '1041768734596-437k2ccrg2or2iti65ca3o4e77vfmhvo.apps.googleusercontent.com',
+    iosClientId: '1041768734596-i2l9qdui1641aaceo2676did7r2j7agi.apps.googleusercontent.com',
     iosBundleId: 'com.example.theDailyJournal',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBKtOt82907-Lcks2D7e_jvPGmP95e8_WQ',
-    appId: '1:76431284610:ios:713dcec48a1591818e179b',
-    messagingSenderId: '76431284610',
-    projectId: 'the-daily-journal-bbbf4',
-    storageBucket: 'the-daily-journal-bbbf4.appspot.com',
-    iosClientId: '76431284610-p8r93a24ido49b4ev485np01bs65ovsr.apps.googleusercontent.com',
-    iosBundleId: 'com.example.theDailyJournal.RunnerTests',
   );
 }

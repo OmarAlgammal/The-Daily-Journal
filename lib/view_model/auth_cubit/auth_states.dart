@@ -1,5 +1,4 @@
 
-import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_states.freezed.dart';

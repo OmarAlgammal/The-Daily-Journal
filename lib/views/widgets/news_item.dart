@@ -7,7 +7,6 @@ import 'package:the_daily_journal/view_model/bookmarks_cubit/bookmark_cubit.dart
 import '../../models/news_model.dart';
 import '../../routing/routes.dart';
 import '../../utils/constance/gaps.dart';
-import '../../utils/constance/padding.dart';
 
 class NewsItem extends StatelessWidget {
   const NewsItem({Key? key, required this.news, this.showBookmark = false})

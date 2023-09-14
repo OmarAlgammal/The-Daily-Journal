@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
           /// TODO: Refactor app colors in dark theme
           builder: (context) => MaterialApp(
             onGenerateRoute: onGenerate,
-            initialRoute: AppRouts.searchScreen,
+            initialRoute: AppRouts.landingScreen,
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: Provider.of<ThemeProvider>(context).themeData,

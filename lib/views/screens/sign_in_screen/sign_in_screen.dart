@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:the_daily_journal/routing/routes.dart';
-import 'package:the_daily_journal/utils/constance/border_radius.dart';
-import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
-import 'package:the_daily_journal/view_model/auth_cubit/auth_cubit.dart';
 import 'package:the_daily_journal/views/screens/sign_in_screen/components/continue_with_services_component.dart';
-import 'package:the_daily_journal/views/widgets/my_button.dart';
 
 import '../../../utils/constance/gaps.dart';
-import '../../../utils/constance/icons.dart';
 import '../../../utils/constance/padding.dart';
-import '../../../utils/theme/colors.dart';
-import '../../widgets/register_item.dart';
 import 'components/sign_in_with_email_component.dart';
 
 class SignInScreen extends StatelessWidget {

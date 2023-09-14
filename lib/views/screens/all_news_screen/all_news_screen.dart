@@ -3,10 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/models/news_model.dart';
 import 'package:the_daily_journal/utils/constance/gaps.dart';
 import 'package:the_daily_journal/utils/constance/padding.dart';
-import 'package:the_daily_journal/view_model/categories_news_cubit/categories_cubit.dart';
 import 'package:the_daily_journal/view_model/query_news_cubit/query_news_cubit.dart';
 import 'package:the_daily_journal/view_model/query_news_cubit/query_news_states.dart';
-
 import 'package:the_daily_journal/views/widgets/my_circular_progress_indicator.dart';
 import 'package:the_daily_journal/views/widgets/news_item.dart';
 
