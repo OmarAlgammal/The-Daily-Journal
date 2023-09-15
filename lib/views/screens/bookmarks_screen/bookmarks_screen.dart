@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:the_daily_journal/database/local_database.dart';
+import 'package:the_daily_journal/repositories/local_repository.dart';
 import 'package:the_daily_journal/utils/constance/padding.dart';
 
 import '../../../models/news_model.dart';

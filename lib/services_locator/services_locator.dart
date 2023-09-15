@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:the_daily_journal/database/local_database.dart';
-import 'package:the_daily_journal/database/news_database.dart';
+import 'package:the_daily_journal/repositories/local_repository.dart';
+import 'package:the_daily_journal/repositories/news_repository.dart';
 import 'package:the_daily_journal/services/firebase_auth_service.dart';
 import 'package:the_daily_journal/services/local_services.dart';
 import 'package:the_daily_journal/services/news_service.dart';
@@ -21,12 +21,12 @@ void setup() {
       ),
     ));
   sl.registerSingleton(NewsService(sl()));
-  sl.registerSingleton(NewsDatabase(sl<NewsService>()));
+  sl.registerSingleton(NewsRepository(sl<NewsService>()));
   sl.registerLazySingleton(() => LocalServices());
   sl.registerLazySingleton(() => LocalDatabase(sl<LocalServices>()));
 
-  sl.registerSingleton(QueryNewsCubit(sl<NewsDatabase>()));
+  sl.registerSingleton(QueryNewsCubit(sl<NewsRepository>()));
   sl.registerSingleton(AuthCubit(sl<FirebaseAuthentication>()));
-  sl.registerSingleton(CategoriesCubit(sl<NewsDatabase>()));
+  sl.registerSingleton(CategoriesCubit(sl<NewsRepository>()));
   sl.registerSingleton(BookmarkCubit(sl<LocalDatabase>()));
 }

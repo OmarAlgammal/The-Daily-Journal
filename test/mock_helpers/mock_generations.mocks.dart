@@ -10,7 +10,6 @@ import 'package:dio/dio.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:the_daily_journal/core/network/erorrs/server_failure.dart'
     as _i6;
-import 'package:the_daily_journal/models/news_model.dart' as _i7;
 import 'package:the_daily_journal/services/news_service.dart' as _i4;
 
 // ignore_for_file: type=lint
@@ -94,50 +93,32 @@ class MockNewsService extends _i1.Mock implements _i4.NewsService {
   }
 
   @override
-  _i5.Future<_i2.Either<_i6.ServerFailure, List<_i7.NewsModel>>> getData({
-    String? query,
-    String? sort,
+  _i5.Future<_i2.Either<_i6.ServerFailure, T>> getData<T>({
+    required String? path,
+    required _i4.DataBuilder<T>? builder,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
-          #getQueryNews,
+          #getData,
           [],
           {
-            #query: query,
-            #sort: sort,
+            #path: path,
+            #builder: builder,
           },
         ),
-        returnValue: _i5.Future<
-                _i2.Either<_i6.ServerFailure, List<_i7.NewsModel>>>.value(
-            _FakeEither_0<_i6.ServerFailure, List<_i7.NewsModel>>(
+        returnValue: _i5.Future<_i2.Either<_i6.ServerFailure, T>>.value(
+            _FakeEither_0<_i6.ServerFailure, T>(
           this,
           Invocation.method(
-            #getQueryNews,
+            #getData,
             [],
             {
-              #query: query,
-              #sort: sort,
+              #path: path,
+              #builder: builder,
             },
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i6.ServerFailure, List<_i7.NewsModel>>>);
-  @override
-  _i5.Future<_i2.Either<_i6.ServerFailure, List<_i7.NewsModel>>>
-      getTopHeadlines(String? path) => (super.noSuchMethod(
-            Invocation.method(
-              #getTopHeadlines,
-              [path],
-            ),
-            returnValue: _i5.Future<
-                    _i2.Either<_i6.ServerFailure, List<_i7.NewsModel>>>.value(
-                _FakeEither_0<_i6.ServerFailure, List<_i7.NewsModel>>(
-              this,
-              Invocation.method(
-                #getTopHeadlines,
-                [path],
-              ),
-            )),
-          ) as _i5.Future<_i2.Either<_i6.ServerFailure, List<_i7.NewsModel>>>);
+      ) as _i5.Future<_i2.Either<_i6.ServerFailure, T>>);
 }
 
 /// A class which mocks [Dio].
@@ -821,4 +802,41 @@ class MockDio extends _i1.Mock implements _i3.Dio {
           ),
         )),
       ) as _i5.Future<_i3.Response<T>>);
+}
+
+/// A class which mocks [BaseNewsService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockBaseNewsService extends _i1.Mock implements _i4.BaseNewsService {
+  MockBaseNewsService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i2.Either<_i6.ServerFailure, T>> getData<T>({
+    required String? path,
+    required _i4.DataBuilder<T>? builder,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getData,
+          [],
+          {
+            #path: path,
+            #builder: builder,
+          },
+        ),
+        returnValue: _i5.Future<_i2.Either<_i6.ServerFailure, T>>.value(
+            _FakeEither_0<_i6.ServerFailure, T>(
+          this,
+          Invocation.method(
+            #getData,
+            [],
+            {
+              #path: path,
+              #builder: builder,
+            },
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i6.ServerFailure, T>>);
 }

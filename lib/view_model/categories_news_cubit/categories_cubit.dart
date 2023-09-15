@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/view_model/categories_news_cubit/categories_states.dart';
 
-import '../../database/news_database.dart';
 import '../../models/news_model.dart';
+import '../../repositories/news_repository.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {
-  final BaseNewsDatabase _baseNewsApiDatabase;
+  final BaseNewsRepository _baseNewsApiDatabase;
 
   CategoriesCubit(this._baseNewsApiDatabase)
       : super(CategoriesState.categoryLoading());
@@ -17,7 +17,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       CategoriesState Function(List<NewsModel>) onSuccess) async {
     emit(Loading());
     final response =
-        await _baseNewsApiDatabase.getTopCategoryHeadlines(category);
+        await _baseNewsApiDatabase.fetchTopCategoryHeadlines(category);
     response.fold((failure) => emit(Failed(failure.message)),
         (newsList) => emit(onSuccess(newsList)));
   }
@@ -27,7 +27,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       int? pageSize,
       required CategoriesState Function(List<NewsModel>) onSuccess}) async {
     emit(Loading());
-    final response = await _baseNewsApiDatabase.getTopCountryHeadlines(
+    final response = await _baseNewsApiDatabase.fetchTopCountryHeadlines(
         countryCode, pageSize);
     response.fold((failure) => emit(Failed(failure.message)),
         (newsList) => emit(onSuccess(newsList)));

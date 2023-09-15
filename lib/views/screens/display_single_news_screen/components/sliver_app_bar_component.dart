@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_daily_journal/database/local_database.dart';
+import 'package:the_daily_journal/repositories/local_repository.dart';
 import 'package:the_daily_journal/models/news_model.dart';
 import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
 import 'package:the_daily_journal/utils/helpers/date_factory.dart';

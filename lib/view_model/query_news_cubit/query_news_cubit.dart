@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/view_model/query_news_cubit/query_news_states.dart';
 
-import '../../database/news_database.dart';
 import '../../models/news_model.dart';
+import '../../repositories/news_repository.dart';
 
 class QueryNewsCubit extends Cubit<QueryNewsState> {
-  final BaseNewsDatabase _baseNewsApiDataBase;
+  final BaseNewsRepository _baseNewsApiDataBase;
 
   static QueryNewsCubit instance(BuildContext context) =>
       BlocProvider.of<QueryNewsCubit>(context);
@@ -16,7 +16,7 @@ class QueryNewsCubit extends Cubit<QueryNewsState> {
   void _loadQueryNews(
       {String? query, String? sort, required QueryNewsState Function(List<
           NewsModel> news) onSuccess}) async {
-    final result = await _baseNewsApiDataBase.getQueryNews(query: query, sort: sort,);
+    final result = await _baseNewsApiDataBase.fetchQueryNews(query: query, sort: sort,);
     result.fold((failure) => emit(FailedToLoadQueryNews(failure.message)),
             (newsList) => emit(onSuccess(newsList)));
   }

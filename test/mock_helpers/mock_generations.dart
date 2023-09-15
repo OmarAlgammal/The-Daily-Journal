@@ -7,6 +7,7 @@ import 'package:the_daily_journal/services/news_service.dart';
 @GenerateMocks([
   NewsService,
   Dio,
+  BaseNewsService,
 ])
 void main(){
 

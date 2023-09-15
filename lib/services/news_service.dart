@@ -23,9 +23,8 @@ class NewsService implements BaseNewsService {
     try {
       final response =
           await _dio.get(path);
-      final responseData = response.data as Map<String, dynamic>;
 
-      final result = responseData['articles'] as List;
+      final result = response.data['articles'] as List;
       return Right(builder(result.map((e) => e as Map<String, dynamic>).toList()));
 
       /// TODO: Refactor error code
