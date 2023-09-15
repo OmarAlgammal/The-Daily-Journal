@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:either_dart/either.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -38,11 +38,11 @@ class FirebaseAuthentication implements BaseFirebaseAuth {
         idToken: googleAuth?.idToken,
       );
       final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-      return right(userCredential);
+      return Right(userCredential);
     } on FirebaseException catch (e) {
-      return left(ServerFailure('error : ${e.message}'));
+      return Left(ServerFailure('error : ${e.message}'));
     } catch (e) {
-      return left(ServerFailure('An error occurred while signing in with Google : ${e.toString()}'));
+      return Left(ServerFailure('An error occurred while signing in with Google : ${e.toString()}'));
     }
   }
 

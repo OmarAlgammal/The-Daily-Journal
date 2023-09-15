@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:either_dart/either.dart';
 import 'package:dio/dio.dart';
 import 'package:the_daily_journal/core/network/erorrs/server_failure.dart';
 
@@ -30,13 +30,13 @@ class NewsService implements BaseNewsService {
       /// TODO: Refactor error code
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectionError) {
-        return left(const ServerFailure('No internet connection'));
+        return const Left(ServerFailure('No internet connection'));
       }
-      return left(const ServerFailure('Failed to get data'));
+      return const Left(ServerFailure('Failed to get data'));
     } on ServerException catch (e) {
-      return left(ServerFailure(e.message));
+      return Left(ServerFailure(e.message));
     } catch (e) {
-      return left(ServerFailure(e.toString()));
+      return Left(ServerFailure(e.toString()));
     }
   }
 }

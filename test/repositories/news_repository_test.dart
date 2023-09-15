@@ -38,7 +38,7 @@ void main() {
           .thenAnswer((realInvocation) async => Right(news));
 
       // Act
-      final result = await newsRepository.fetchQueryNews(
+      final result = await newsRepository.fetchNewsByCategory(
         query: '',
         sort: '',
       );
@@ -54,7 +54,7 @@ void main() {
           .thenAnswer((_) async => const Left(ServerFailure('')));
 
       // Act
-      final result = await newsRepository.fetchQueryNews();
+      final result = await newsRepository.fetchNewsByCategory();
 
       // Assert
       expect(result, isA<Left>());

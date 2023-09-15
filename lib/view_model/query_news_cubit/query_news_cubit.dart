@@ -16,7 +16,7 @@ class QueryNewsCubit extends Cubit<QueryNewsState> {
   void _loadQueryNews(
       {String? query, String? sort, required QueryNewsState Function(List<
           NewsModel> news) onSuccess}) async {
-    final result = await _baseNewsApiDataBase.fetchQueryNews(query: query, sort: sort,);
+    final result = await _baseNewsApiDataBase.fetchNewsByCategory(query: query, sort: sort,);
     result.fold((failure) => emit(FailedToLoadQueryNews(failure.message)),
             (newsList) => emit(onSuccess(newsList)));
   }

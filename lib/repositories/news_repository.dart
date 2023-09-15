@@ -1,51 +1,36 @@
-import 'package:dartz/dartz.dart';
-import 'package:the_daily_journal/core/network/api_constance.dart';
+import 'package:either_dart/either.dart';
 import 'package:the_daily_journal/services/news_service.dart';
 
 import '../core/network/erorrs/server_failure.dart';
 import '../models/news_model.dart';
 
 abstract class BaseNewsRepository {
-  Future<Either<ServerFailure, List<NewsModel>>> fetchQueryNews(
-      {String? query, String? sort});
-
-  Future<Either<ServerFailure, List<NewsModel>>> fetchTopCountryHeadlines(
-      String countryCode, int? pageSize);
-
-  Future<Either<ServerFailure, List<NewsModel>>> fetchTopCategoryHeadlines(
-      String category);
+  Future<Either<ServerFailure, List<NewsModel>>> fetchNewsByCategory({
+    required String path,
+    required String category,
+  });
 }
 
 class NewsRepository implements BaseNewsRepository {
   final BaseNewsService _baseNewsApiService;
-
+  Map<String, List<NewsModel>> _cache = {};
   NewsRepository(this._baseNewsApiService);
 
   @override
-  Future<Either<ServerFailure, List<NewsModel>>> fetchQueryNews(
-      {String? query, String? sort}) async {
-    return await _baseNewsApiService.getData<List<NewsModel>>(
-        path: ApiConstance.allNewsPath(query: query, sort: sort),
-        builder: (List<Map<String, dynamic>> maps) =>
-            maps.map((e) => NewsModel.fromJson(e)).toList());
-  }
+  Future<Either<ServerFailure, List<NewsModel>>> fetchNewsByCategory({
+    required String path,
+    required String category,
+  }) async {
+    if (_cache.containsKey(category)) {
+      return Right(_cache[category] ?? []);
+    }
+    final result = await _baseNewsApiService.getData<List<NewsModel>>(
+        path: path,
+        builder: (maps) => maps.map((e) => NewsModel.fromJson(e)).toList());
 
-  @override
-  Future<Either<ServerFailure, List<NewsModel>>> fetchTopCategoryHeadlines(
-      String category) async {
-    return await _baseNewsApiService.getData<List<NewsModel>>(
-        path: ApiConstance.topCategoryHeadlinesPath(category),
-        builder: (List<Map<String, dynamic>> maps) =>
-            maps.map((e) => NewsModel.fromJson(e)).toList());
-  }
-
-  @override
-  Future<Either<ServerFailure, List<NewsModel>>> fetchTopCountryHeadlines(
-      String countryCode, int? pageSize) async {
-    return await _baseNewsApiService.getData<List<NewsModel>>(
-      path: ApiConstance.topCountryHeadlinesPath(countryCode, pageSize),
-      builder: (List<Map<String, dynamic>> maps) =>
-          maps.map((e) => NewsModel.fromJson(e)).toList(),
-    );
+    return result.fold((left) => Left(left), (right) {
+      _cache[category] = right;
+      return Right(right);
+    });
   }
 }
