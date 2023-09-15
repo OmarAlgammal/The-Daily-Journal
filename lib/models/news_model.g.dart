@@ -69,3 +69,35 @@ class NewsModelAdapter extends TypeAdapter<NewsModel> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$_News _$$_NewsFromJson(Map<String, dynamic> json) => _$_News(
+      sourceName: json['sourceName'] as String,
+      sourceLogoUrl: json['sourceLogoUrl'] as String,
+      category: json['category'] as String,
+      authorName: json['authorName'] as String,
+      authorImageUrl: json['authorImageUrl'] as String,
+      title: json['title'] as String,
+      description: json['description'] as String,
+      content: json['content'] as String,
+      url: json['url'] as String,
+      imageUrl: json['imageUrl'] as String,
+      publishedDate: DateTime.parse(json['publishedDate'] as String),
+    );
+
+Map<String, dynamic> _$$_NewsToJson(_$_News instance) => <String, dynamic>{
+      'sourceName': instance.sourceName,
+      'sourceLogoUrl': instance.sourceLogoUrl,
+      'category': instance.category,
+      'authorName': instance.authorName,
+      'authorImageUrl': instance.authorImageUrl,
+      'title': instance.title,
+      'description': instance.description,
+      'content': instance.content,
+      'url': instance.url,
+      'imageUrl': instance.imageUrl,
+      'publishedDate': instance.publishedDate.toIso8601String(),
+    };

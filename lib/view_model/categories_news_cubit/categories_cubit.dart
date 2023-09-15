@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/view_model/categories_news_cubit/categories_states.dart';
 
-import '../../database/news_api_database.dart';
+import '../../database/news_database.dart';
 import '../../models/news_model.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {
-  final BaseNewsApiDatabase _baseNewsApiDatabase;
+  final BaseNewsDatabase _baseNewsApiDatabase;
 
   CategoriesCubit(this._baseNewsApiDatabase)
       : super(CategoriesState.categoryLoading());

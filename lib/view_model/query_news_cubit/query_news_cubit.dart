@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/view_model/query_news_cubit/query_news_states.dart';
 
-import '../../database/news_api_database.dart';
+import '../../database/news_database.dart';
 import '../../models/news_model.dart';
 
 class QueryNewsCubit extends Cubit<QueryNewsState> {
-  final BaseNewsApiDatabase _baseNewsApiDataBase;
+  final BaseNewsDatabase _baseNewsApiDataBase;
 
   static QueryNewsCubit instance(BuildContext context) =>
       BlocProvider.of<QueryNewsCubit>(context);
