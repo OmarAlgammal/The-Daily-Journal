@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:the_daily_journal/routing/routes.dart';
 
 class NewsTitle extends StatelessWidget {
-  const NewsTitle({Key? key, required this.title}) : super(key: key);
+  const NewsTitle({Key? key, required this.title, this.showButton = true}) : super(key: key);
 
   final String title;
+  final bool showButton;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,7 @@ class NewsTitle extends StatelessWidget {
               .headlineSmall!
               .copyWith(fontWeight: FontWeight.w500),
         ),
+        if (showButton)
         TextButton(
           child: Text(
             'View all',

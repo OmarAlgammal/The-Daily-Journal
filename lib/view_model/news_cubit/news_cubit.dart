@@ -23,11 +23,10 @@ class NewsCubit extends Cubit<NewsState> {
   }
 
   String _getCategoryPath(NewsCategories newsCategory) {
-    final Map<NewsCategories, String> categoriesPaths = {
-      NewsCategories.all: ApiConstance.allNewsPath(),
-      NewsCategories.fromEgypt: ApiConstance.topCountryHeadlinesPath('eg', 2),
+    return switch (newsCategory) {
+      NewsCategories.all => ApiConstance.allNewsPath(),
+      NewsCategories.fromEgypt => ApiConstance.topCountryHeadlinesPath('eg', 7),
+      _ => ApiConstance.topCategoryHeadlinesPath(newsCategory.name),
     };
-    return categoriesPaths[newsCategory] ??
-        ApiConstance.topCategoryHeadlinesPath(newsCategory.name);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:the_daily_journal/utils/constance/icons.dart';
 import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
@@ -33,23 +34,23 @@ class NewsItem extends StatelessWidget {
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: Image.network(
-                news.imageUrl,
-                errorBuilder: (BuildContext context, Object exception,
-                    StackTrace? stackTrace) {
-                  return Container(
-                    height: newsImageHeight,
-                    width: newsImageWidth,
-                    color: Theme.of(context).colorScheme.surface,
-                    child: const Center(child: Text('unavailable')),
-                  );
-                },
-                fit: BoxFit.cover,
-                height: newsImageHeight,
-                width: newsImageWidth,
-              ),
-            ),
+                borderRadius: BorderRadius.circular(10.0),
+                child: CachedNetworkImage(
+                  imageUrl: news.imageUrl,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  height: newsImageHeight,
+                  width: newsImageWidth,
+                  fit: BoxFit.cover,
+                  color: Theme.of(context).colorScheme.surface,
+                  errorWidget: (context, url, error) => const Text('Error'),
+                )),
             gap12,
             Expanded(
               child: Column(
@@ -68,7 +69,7 @@ class NewsItem extends StatelessWidget {
                       const Spacer(),
                       if (showBookmark)
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             BookmarkCubit.instance(context)
                                 .deleteBookmark(news.title);
                           },

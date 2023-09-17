@@ -25,6 +25,7 @@ class RecommendationsNewsComponent extends StatelessWidget {
           padding: padding16,
           child: NewsTitle(
             title: 'Recommendations',
+            showButton: false,
           ),
         ),
         Padding(
