@@ -3,25 +3,32 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/models/news_model.dart';
 import 'package:the_daily_journal/utils/constance/gaps.dart';
 import 'package:the_daily_journal/utils/constance/padding.dart';
-import 'package:the_daily_journal/view_model/query_news_cubit/query_news_cubit.dart';
-import 'package:the_daily_journal/view_model/query_news_cubit/query_news_states.dart';
+import 'package:the_daily_journal/utils/enums/news_categories.dart';
+import 'package:the_daily_journal/view_model/news_cubit/news_cubit.dart';
+import 'package:the_daily_journal/view_model/news_cubit/news_states.dart';
 import 'package:the_daily_journal/views/widgets/my_circular_progress_indicator.dart';
 import 'package:the_daily_journal/views/widgets/news_item.dart';
 
-class AllNewsScreen extends StatelessWidget {
-  const AllNewsScreen({Key? key}) : super(key: key);
+class CategoryScreen extends StatelessWidget {
+  const CategoryScreen(
+    this._category, {
+    Key? key,
+  }) : super(key: key);
+  final NewsCategories _category;
 
   @override
   Widget build(BuildContext context) {
-    QueryNewsCubit.instance(context).getAllNews();
+    NewsCubit.instance(context).fetchNewsByCategory(category: _category);
     List<NewsModel> news = [];
-    return BlocBuilder<QueryNewsCubit, QueryNewsState>(builder: (context, state) {
-      if (state is FailedToLoadQueryNews && news.isEmpty) {
-        return Text('Error: ${state.message}');
-      } else if (state is AllNewsLoading && news.isEmpty) {
+    return BlocBuilder<NewsCubit, NewsState>(builder: (context, state) {
+      if (state is NewsLoading) {
         return const MyCircularProgressIndicator();
       }
-      if (state is AllNewsLoadedSuccessfully) {
+      if (state is FailedToLoadNews) {
+        return const Text('Failed to load news');
+      }
+
+      if (state is NewsLoadedSuccessfully) {
         news = state.news;
       }
       return ListView.separated(

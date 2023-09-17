@@ -8,10 +8,10 @@ import 'package:the_daily_journal/routing/routers.dart';
 import 'package:the_daily_journal/routing/routes.dart';
 import 'package:the_daily_journal/services/local_services.dart';
 import 'package:the_daily_journal/services_locator/services_locator.dart';
+import 'package:the_daily_journal/utils/enums/news_categories.dart';
 import 'package:the_daily_journal/view_model/auth_cubit/auth_cubit.dart';
 import 'package:the_daily_journal/view_model/bookmarks_cubit/bookmark_cubit.dart';
-import 'package:the_daily_journal/view_model/categories_news_cubit/categories_cubit.dart';
-import 'package:the_daily_journal/view_model/query_news_cubit/query_news_cubit.dart';
+import 'package:the_daily_journal/view_model/news_cubit/news_cubit.dart';
 import 'package:the_daily_journal/view_model/theme_provider/theme_provider.dart';
 
 void main() async {
@@ -50,10 +50,11 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(
           create: (context) => sl<AuthCubit>(),
         ),
-
-        BlocProvider(create: (context) => sl<QueryNewsCubit>()..getAllNews()),
         BlocProvider(
-          create: (context) => sl<CategoriesCubit>()..getBreakingNews(),
+          create: (context) => sl<NewsCubit>()
+            ..fetchNewsByCategory(
+                category: NewsCategories.fromEgypt)
+            ..fetchNewsByCategory(category: NewsCategories.all),
         ),
         BlocProvider(create: (context) => sl<BookmarkCubit>()),
       ],

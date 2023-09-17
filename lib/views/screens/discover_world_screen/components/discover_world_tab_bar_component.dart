@@ -2,22 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_daily_journal/utils/constance/gaps.dart';
 import 'package:the_daily_journal/utils/constance/padding.dart';
+import 'package:the_daily_journal/utils/enums/news_categories.dart';
 import 'package:the_daily_journal/views/screens/discover_world_screen/components/discover_world_serach_box_component.dart';
 
 class DiscoverWorldTabBarComponent extends StatelessWidget {
   DiscoverWorldTabBarComponent({Key? key}) : super(key: key);
-
-  final List<String> _choices = [
-    'All',
-    'Business',
-    'Entertainment',
-    'Science',
-    'Sports',
-    'Health',
-    'Technology',
-    'From Egypt',
-    'General',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +43,14 @@ class DiscoverWorldTabBarComponent extends StatelessWidget {
           labelPadding: paddingH4,
           indicatorColor: Colors.transparent,
           tabs: List.generate(
-            _choices.length,
+            NewsCategories.values.length,
             (index) => Tab(
               child: Consumer<ChipController>(
                 builder: (context, model, child) => Chip(
                   label: Padding(
                     padding: paddingH4,
                     child: Text(
-                      _choices[index],
+                      NewsCategories.values[index].name,
                       style: TextStyle(
                         color: model.chipIndex == index
                             ? Theme.of(context).colorScheme.background

@@ -2,19 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_daily_journal/utils/constance/gaps.dart';
 import 'package:the_daily_journal/utils/constance/icons.dart';
-import 'package:the_daily_journal/views/screens/BussinessScreen/business_screen.dart';
-import 'package:the_daily_journal/views/screens/Entertainment/entertainment_screen.dart';
-import 'package:the_daily_journal/views/screens/all_news_screen/all_news_screen.dart';
-import 'package:the_daily_journal/views/screens/discover_world_screen/components/discover_world_tab_bar_component.dart';
-import 'package:the_daily_journal/views/screens/egypt_news_screen/egypt_news_screen.dart';
-import 'package:the_daily_journal/views/screens/general_news_screen/general_news_screen.dart';
-import 'package:the_daily_journal/views/screens/health_screen/health_screen.dart';
-import 'package:the_daily_journal/views/screens/science_screen/science_screen.dart';
-import 'package:the_daily_journal/views/screens/sports_screen/sports_screen.dart';
-import 'package:the_daily_journal/views/screens/technology_screen/technology_screen.dart';
+import 'package:the_daily_journal/utils/enums/news_categories.dart';
 import 'package:the_daily_journal/views/widgets/circular_icon.dart';
 
 import '../../../models/news_model.dart';
+import '../all_news_screen/category_screen.dart';
+import 'components/discover_world_tab_bar_component.dart';
 
 class DiscoverWorldScreen extends StatelessWidget {
   DiscoverWorldScreen({Key? key}) : super(key: key);
@@ -22,7 +15,7 @@ class DiscoverWorldScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 9,
+      length: NewsCategories.values.length,
       child: ChangeNotifierProvider(
         create: (context) => ChipController(),
         child: Scaffold(
@@ -33,6 +26,7 @@ class DiscoverWorldScreen extends StatelessWidget {
                   backgroundColor: Theme.of(context).colorScheme.background,
                   toolbarHeight: 110,
                   floating: true,
+
                   /// TODO: Refactor leading width
                   leadingWidth: 100,
                   leading: Row(
@@ -48,24 +42,16 @@ class DiscoverWorldScreen extends StatelessWidget {
                   ),
                   snap: true,
                   bottom: PreferredSize(
-                    preferredSize: Size.fromHeight(160),
+                    preferredSize: const Size.fromHeight(160),
                     child: DiscoverWorldTabBarComponent(),
                   ),
                 ),
               ];
             },
-            body: const TabBarView(
-              children: [
-                AllNewsScreen(),
-                BusinessScreen(),
-                EntertainmentScreen(),
-                ScienceScreen(),
-                SportsScreen(),
-                HealthScreen(),
-                TechnologyScreen(),
-                EgyptNewsScreen(),
-                GeneralNewsScreen(),
-              ],
+            body: TabBarView(
+              children: NewsCategories.values
+                  .map((category) => CategoryScreen(category))
+                  .toList(),
             ),
           ),
         ),

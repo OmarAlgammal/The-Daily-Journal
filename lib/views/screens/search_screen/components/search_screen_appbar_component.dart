@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../utils/constance/gaps.dart';
 import '../../../../utils/constance/icons.dart';
-import '../../../../utils/constance/padding.dart';
-import '../../../../view_model/query_news_cubit/query_news_cubit.dart';
 import '../../../widgets/circular_icon.dart';
 
 class SearchScreenAppBarComponent extends StatelessWidget
@@ -38,7 +36,8 @@ class SearchScreenAppBarComponent extends StatelessWidget
                   ),
                   border: InputBorder.none),
               onSubmitted: (query) {
-                QueryNewsCubit.instance(context).getQueryNews(query: query);
+                /// Todo: Refactor this method
+                //NewsCubit.instance(context).fetchNewsByCategory(query: query);
               },
             ),
           ),
@@ -55,8 +54,9 @@ class SearchScreenAppBarComponent extends StatelessWidget
                 child: Text(sort),
                 onTap: () {
                   debugPrint('sort here is $sort');
-                  QueryNewsCubit.instance(context)
-                      .getQueryNews(query: _controller.text, sort: sort.toLowerCase());
+                  // Todo: Refactor this method
+                  // QueryNewsCubit.instance(context)
+                  //     .getQueryNews(query: _controller.text, sort: sort.toLowerCase());
                 },
               ),
             )

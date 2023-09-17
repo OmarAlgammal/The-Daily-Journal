@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/models/news_model.dart';
 import 'package:the_daily_journal/utils/constance/padding.dart';
-import 'package:the_daily_journal/view_model/query_news_cubit/query_news_cubit.dart';
-import 'package:the_daily_journal/view_model/query_news_cubit/query_news_states.dart';
+import 'package:the_daily_journal/view_model/news_cubit/news_cubit.dart';
+import 'package:the_daily_journal/view_model/news_cubit/news_states.dart';
 import 'package:the_daily_journal/views/widgets/my_circular_progress_indicator.dart';
 import 'package:the_daily_journal/views/widgets/news_item.dart';
 
@@ -16,15 +16,15 @@ class DisplayAllNewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<NewsModel> news = [];
-    return BlocBuilder<QueryNewsCubit, QueryNewsState>(
+    return BlocBuilder<NewsCubit, NewsState>(
       builder: (context, state) {
-        if (state is AllNewsLoading) {
+        if (state is NewsLoading) {
           return const MyCircularProgressIndicator();
-        } else if (state is FailedToLoadQueryNews && news.isEmpty) {
+        } else if (state is FailedToLoadNews && news.isEmpty) {
           return const Text('Failed to load news');
         }
 
-        if (state is AllNewsLoadedSuccessfully) {
+        if (state is NewsLoadedSuccessfully) {
           news = state.news;
         }
 

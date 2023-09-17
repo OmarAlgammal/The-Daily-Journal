@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/routing/routes.dart';
 import 'package:the_daily_journal/utils/constance/padding.dart';
+import 'package:the_daily_journal/utils/enums/news_categories.dart';
 import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
 import 'package:the_daily_journal/utils/helpers/date_factory.dart';
-import 'package:the_daily_journal/view_model/categories_news_cubit/categories_states.dart';
+import 'package:the_daily_journal/view_model/news_cubit/news_cubit.dart';
+import 'package:the_daily_journal/view_model/news_cubit/news_states.dart';
 import 'package:the_daily_journal/views/widgets/authentication_mark.dart';
 
 import '../../../../models/news_model.dart';
 import '../../../../utils/constance/gaps.dart';
 import '../../../../utils/theme/colors.dart';
-import '../../../../view_model/categories_news_cubit/categories_cubit.dart';
 import '../../../widgets/my_circular_progress_indicator.dart';
 import '../../../widgets/news_title.dart';
 
@@ -38,14 +39,17 @@ class _BreakingNewsComponentState extends State<BreakingNewsComponent> {
           padding: padding16,
           child: NewsTitle(title: 'Breaking News'),
         ),
-        BlocBuilder<CategoriesCubit, CategoriesState>(
-            builder: (context, state) {
-          if (state is Failed && news.isEmpty) {
+        BlocBuilder<NewsCubit, NewsState>(
+            buildWhen: (context, state) {
+          if (state is NewsLoadedSuccessfully && state.category == NewsCategories.fromEgypt) return true;
+          return false;
+        }, builder: (context, state) {
+          if (state is FailedToLoadNews && news.isEmpty) {
             return Text('Error: ${state.message}');
-          } else if (state is Loading) {
+          } else if (state is NewsLoading) {
             return const MyCircularProgressIndicator();
           }
-          if (state is FromUsCategoryLoadedSuccessfully) {
+          if (state is NewsLoadedSuccessfully) {
             news = state.news;
           }
           return Column(

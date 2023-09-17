@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/news_model.dart';
 import '../../../utils/constance/gaps.dart';
 import 'components/breaking_news_component.dart';
 import 'components/home_app_bar_component.dart';
