@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_daily_journal/models/news_model.dart';
+import 'package:the_daily_journal/views/widgets/my_cached_image_network.dart';
 
 import '../../../../utils/constance/gaps.dart';
 import '../../../widgets/authentication_mark.dart';
@@ -21,8 +22,8 @@ class SliverListComponent extends StatelessWidget {
                 child: Row(
                   children: [
                     CircleAvatar(
-                      backgroundImage: NetworkImage(news.sourceLogoUrl),
                       backgroundColor: Theme.of(context).colorScheme.background,
+                      child: MyCachedImageNetwork(url: news.imageUrl),
                     ),
                     gap8,
                     Text(

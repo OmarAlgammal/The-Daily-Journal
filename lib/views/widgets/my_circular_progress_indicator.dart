@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
 
 class MyCircularProgressIndicator extends StatelessWidget {
-  const MyCircularProgressIndicator({Key? key}) : super(key: key);
+  const MyCircularProgressIndicator({Key? key, this.dimens}) : super(key: key);
 
+  final double? dimens;
   @override
   Widget build(BuildContext context) {
-    return SizedBox.fromSize(
-      size: Size.fromHeight(context.screenHeight() * .3),
+    return SizedBox.square(
+      dimension: dimens ?? 24,
       child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -10,8 +10,8 @@ import 'package:the_daily_journal/views/widgets/news_item.dart';
 import '../../../utils/constance/gaps.dart';
 
 /// TODO: Refactor using this class
-class DisplayAllNewsScreen extends StatelessWidget {
-  const DisplayAllNewsScreen({Key? key}) : super(key: key);
+class RecommendationsNewsScreen extends StatelessWidget {
+  const RecommendationsNewsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

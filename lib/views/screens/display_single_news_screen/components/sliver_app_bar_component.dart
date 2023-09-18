@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_daily_journal/repositories/local_repository.dart';
 import 'package:the_daily_journal/models/news_model.dart';
+import 'package:the_daily_journal/repositories/local_repository.dart';
 import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
 import 'package:the_daily_journal/utils/helpers/date_factory.dart';
+import 'package:the_daily_journal/views/widgets/my_cached_image_network.dart';
 
 import '../../../../services_locator/services_locator.dart';
 import '../../../../utils/constance/gaps.dart';
@@ -16,7 +17,6 @@ import '../../../widgets/circular_icon.dart';
 class SliverAppBarComponent extends StatelessWidget {
   const SliverAppBarComponent({Key? key, required this.news}) : super(key: key);
   final NewsModel news;
-
 
   @override
   Widget build(BuildContext context) {
@@ -47,16 +47,8 @@ class SliverAppBarComponent extends StatelessWidget {
                   ],
                 ),
               ),
-              child: Image.network(
-                news.imageUrl,
-                fit: BoxFit.cover,
-                errorBuilder: (BuildContext context, Object exception,
-                    StackTrace? stackTrace) {
-                  return Container(
-                    color: Theme.of(context).colorScheme.surface,
-                    child: const Center(child: Text('unavailable')),
-                  );
-                },
+              child: MyCachedImageNetwork(
+                url: news.imageUrl,
               ),
             ),
             Positioned(
@@ -77,7 +69,7 @@ class SliverAppBarComponent extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 8),
                         child: Text(
-                          news.category!,
+                          news.category,
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall!
@@ -154,23 +146,20 @@ class SliverAppBarComponent extends StatelessWidget {
           fillColor: Theme.of(context).colorScheme.onSurface.withOpacity(.4),
         ),
         const Spacer(),
-        BlocBuilder<BookmarkCubit, BookmarkState>(
-          buildWhen: (context, state){
-            if ([BookmarkSavedSuccessfully, BookmarkDeletedSuccessfully].contains(state.runtimeType)){
-              return true;
-            }
-            return false;
-          },
-            builder: (context, state) {
-              final saved = sl<LocalDatabase>().checkSave(news.title);
+        BlocBuilder<BookmarkCubit, BookmarkState>(buildWhen: (context, state) {
+          if ([BookmarkSavedSuccessfully, BookmarkDeletedSuccessfully]
+              .contains(state.runtimeType)) {
+            return true;
+          }
+          return false;
+        }, builder: (context, state) {
+          final saved = sl<LocalDatabase>().checkSave(news.title);
           return CircularIcon(
-            icon: saved
-                ? bookmarkIcon
-                : outlinedBookmarkIcon,
+            icon: saved ? bookmarkIcon : outlinedBookmarkIcon,
             onTap: () {
-              if (saved){
+              if (saved) {
                 BookmarkCubit.instance(context).deleteBookmark(news.title);
-              }else{
+              } else {
                 BookmarkCubit.instance(context).saveAsBookmark(news);
               }
             },
