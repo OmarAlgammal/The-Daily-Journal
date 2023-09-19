@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:the_daily_journal/utils/constance/icons.dart';
 import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
 import 'package:the_daily_journal/utils/helpers/date_factory.dart';
 import 'package:the_daily_journal/view_model/bookmarks_cubit/bookmark_cubit.dart';
+import 'package:the_daily_journal/views/widgets/my_cached_network_image.dart';
 
 import '../../models/news_model.dart';
 import '../../routing/routes.dart';
@@ -34,23 +34,13 @@ class NewsItem extends StatelessWidget {
         child: Row(
           children: [
             ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: CachedNetworkImage(
-                  imageUrl: news.imageUrl,
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  height: newsImageHeight,
-                  width: newsImageWidth,
-                  fit: BoxFit.cover,
-                  color: Theme.of(context).colorScheme.surface,
-                  errorWidget: (context, url, error) => const Text('Error'),
-                )),
+              borderRadius: BorderRadius.circular(10.0),
+              child: MyCachedNetworkImage(
+                imageUrl: news.imageUrl,
+                width: newsImageWidth,
+                height: newsImageHeight,
+              ),
+            ),
             gap12,
             Expanded(
               child: Column(
@@ -61,7 +51,7 @@ class NewsItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        news.category!,
+                        news.category,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                               color: Colors.grey,
                             ),
@@ -90,11 +80,10 @@ class NewsItem extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      CircleAvatar(
-                        radius: authorImageRadius,
-                        backgroundImage: NetworkImage(
-                          news.authorImageUrl!,
-                        ),
+                      MyCachedNetworkImage(
+                        imageUrl: news.authorImageUrl,
+                        imageBuilder: (context, imageProvider) =>
+                            CircleAvatar(radius: authorImageRadius, backgroundImage: imageProvider,)
                       ),
                       gap4,
                       Expanded(

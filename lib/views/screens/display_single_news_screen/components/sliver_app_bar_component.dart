@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/repositories/local_repository.dart';
 import 'package:the_daily_journal/models/news_model.dart';
 import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
 import 'package:the_daily_journal/utils/helpers/date_factory.dart';
+import 'package:the_daily_journal/views/widgets/my_cached_network_image.dart';
 
 import '../../../../services_locator/services_locator.dart';
 import '../../../../utils/constance/gaps.dart';
@@ -47,17 +49,7 @@ class SliverAppBarComponent extends StatelessWidget {
                   ],
                 ),
               ),
-              child: Image.network(
-                news.imageUrl,
-                fit: BoxFit.cover,
-                errorBuilder: (BuildContext context, Object exception,
-                    StackTrace? stackTrace) {
-                  return Container(
-                    color: Theme.of(context).colorScheme.surface,
-                    child: const Center(child: Text('unavailable')),
-                  );
-                },
-              ),
+              child: MyCachedNetworkImage(imageUrl: news.imageUrl,),
             ),
             Positioned(
               left: 18,
