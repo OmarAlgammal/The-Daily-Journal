@@ -16,7 +16,6 @@ class BookmarksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<NewsModel> news = [];
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -35,9 +34,14 @@ class BookmarksScreen extends StatelessWidget {
       body: ValueListenableBuilder<Box<NewsModel>>(
         valueListenable: sl<LocalDatabase>().getBookmarksBox().listenable(),
         builder: (context, box, _) {
-          final news =  box.values.toList().cast<NewsModel>();
-          if (news.isEmpty){
-            return Center(child: Text('No saved bookmarks', style: Theme.of(context).textTheme.titleMedium,),);
+          final news = box.values.toList().cast<NewsModel>();
+          if (news.isEmpty) {
+            return Center(
+              child: Text(
+                'No saved bookmarks',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            );
           }
           return ListView.separated(
             padding: padding16,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/models/news_model.dart';
 import 'package:the_daily_journal/utils/constance/gaps.dart';
 import 'package:the_daily_journal/utils/constance/padding.dart';
+import 'package:the_daily_journal/utils/enums/news_categories.dart';
 import 'package:the_daily_journal/view_model/news_cubit/news_cubit.dart';
 import 'package:the_daily_journal/view_model/news_cubit/news_states.dart';
 import 'package:the_daily_journal/views/screens/search_screen/components/search_screen_appbar_component.dart';
@@ -18,7 +19,13 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       appBar: SearchScreenAppBarComponent(),
       body: BlocBuilder<NewsCubit, NewsState>(
-        /// Todo: Use build when function
+        buildWhen: (context, state) {
+          if (state is NewsLoading || state is FailedToLoadNews || state is NewsLoadedSuccessfully &&
+              state.category == NewsCategories.search) {
+            return true;
+          }
+          return false;
+        },
         builder: (context, state) {
           if (state is NewsLoading) {
             return const MyCircularProgressIndicator();
@@ -27,8 +34,7 @@ class SearchScreen extends StatelessWidget {
             return const Text('Failed to load search results');
           }
 
-          if (state is NewsLoadedSuccessfully) {
-            news.clear();
+          if (state is NewsLoadedSuccessfully && state.category == NewsCategories.search) {
             news = state.news;
           }
 

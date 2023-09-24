@@ -20,7 +20,7 @@ void main() {
 
   group('fetchData()', () {
     test('getData() should return Right', () async {
-      // Arragne
+      // Arrange
       when(mockDio.get(any)).thenAnswer(
         (_) async => Response(
           data: await readJson(),
@@ -30,7 +30,7 @@ void main() {
       );
 
       // Act
-      final result = await newsService.getData(
+      final result = await newsService.fetchData(
           path: ApiConstance.allNewsPath(), builder: (maps) => Right(maps));
 
       // Assert
@@ -44,12 +44,12 @@ void main() {
           ));
 
       // Act
-      final result = await newsService.getData(
+      final result = await newsService.fetchData(
           path: ApiConstance.allNewsPath(),
           builder: (maps) => const Left(ServerFailure('error')));
 
       // Assert
-      expect(result, isA<Left>());
+      expect(result, const Left(ServerFailure('error')));
     });
   });
 }

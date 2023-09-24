@@ -35,7 +35,7 @@ void main() {
   group('fetchQueryNews()', () {
     test('fetchQueryNews() should return Right(List<NewsModel>)', () async {
       // Arrange
-      when(mockBaseNewsService.getData<List<NewsModel>>(
+      when(mockBaseNewsService.fetchData<List<NewsModel>>(
               path: anyNamed('path'), builder: anyNamed('builder')))
           .thenAnswer((realInvocation) async => Right(news));
 
@@ -49,7 +49,7 @@ void main() {
 
     test('fetchQueryNews() should return Left(ServerFailure)', () async {
       // Arrange
-      when(mockBaseNewsService.getData<List<NewsModel>>(
+      when(mockBaseNewsService.fetchData<List<NewsModel>>(
               path: anyNamed('path'), builder: anyNamed('builder')))
           .thenAnswer((_) async => const Left(ServerFailure('')));
 

@@ -1,5 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +7,6 @@ import 'package:the_daily_journal/view_model/auth_cubit/auth_cubit.dart';
 import 'package:the_daily_journal/view_model/auth_cubit/auth_states.dart';
 import 'package:the_daily_journal/view_model/theme_provider/theme_provider.dart';
 import 'package:the_daily_journal/views/widgets/my_button.dart';
-import 'package:get_it/get_it.dart';
 
 import '../../../services/firebase_auth_service.dart';
 import '../../../services_locator/services_locator.dart';
@@ -22,7 +19,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,9 +28,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('${sl<FirebaseAuthentication>().currentUser?.displayName}', style: Theme.of(context).textTheme.headlineSmall,),
+              Text(
+                '${sl<FirebaseAuthentication>().currentUser?.displayName}',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
               gap12,
-              Text('${sl<FirebaseAuthentication>().currentUser?.email}', style: Theme.of(context).textTheme.bodyMedium,),
+              Text(
+                '${sl<FirebaseAuthentication>().currentUser?.email}',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
               gap36,
               const Divider(
                 thickness: 2.0,
@@ -45,10 +47,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 trailing: Switch(
                   onChanged: (value) {
                     setState(() {
-                      Provider.of<ThemeProvider>(context, listen: false).toggleThemeMode();
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .toggleThemeMode();
                     });
                   },
-                  value: Provider.of<ThemeProvider>(context,).isDarkMode,
+                  value: Provider.of<ThemeProvider>(
+                    context,
+                  ).isDarkMode,
                 ),
               ),
               const Divider(
@@ -57,7 +62,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               gap16,
               const ListTile(
                 title: Text('Notifications'),
-                subtitle: Text('Choose how you want to receive news notifications'),
+                subtitle:
+                    Text('Choose how you want to receive news notifications'),
               ),
               const Divider(
                 thickness: 2.0,
@@ -70,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               const Spacer(),
               BlocBuilder<AuthCubit, AuthState>(
-                builder: (context , state){
+                builder: (context, state) {
                   return MyButton(
                     loadingState: state is SigningOut,
                     onPressed: () {

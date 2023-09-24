@@ -7,7 +7,7 @@ import '../core/network/erorrs/exceptions.dart';
 typedef DataBuilder<T> = T Function(List<Map<String ,dynamic>> maps);
 
 abstract class BaseNewsService {
-  Future<Either<ServerFailure, T>> getData<T>(
+  Future<Either<ServerFailure, T>> fetchData<T>(
       {required String path,  required DataBuilder<T> builder});
 }
 
@@ -17,7 +17,7 @@ class NewsService implements BaseNewsService {
   NewsService(this._dio);
 
   @override
-  Future<Either<ServerFailure, T>> getData<T>(
+  Future<Either<ServerFailure, T>> fetchData<T>(
       {required String path,  required DataBuilder<T> builder}) async {
     
     try {

@@ -32,12 +32,14 @@ class RecommendationsNewsComponent extends StatelessWidget {
             padding: paddingH16,
             child:
                 BlocBuilder<NewsCubit, NewsState>(buildWhen: (context, state) {
-                  if (state is NewsLoadedSuccessfully && state.category == NewsCategories.all) return true;
-          return false;
+              if (state is NewsLoadedSuccessfully &&
+                  state.category == NewsCategories.all) return true;
+              return false;
             }, builder: (context, state) {
               if (state is FailedToLoadNews && news.isEmpty) {
                 return Text('Error: ${state.message}');
-              } else if (state is NewsLoading) {
+              }
+              if (state is NewsLoading) {
                 return const MyCircularProgressIndicator();
               }
               if (state is NewsLoadedSuccessfully) {

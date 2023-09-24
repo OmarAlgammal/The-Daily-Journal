@@ -16,13 +16,16 @@ abstract class BaseLocalServices {
 }
 
 class LocalServices implements BaseLocalServices {
-  late Box<NewsModel> _box;
-  final _categoriesBox = 'CategoriesBox';
+  late final HiveInterface _hive;
+  late final Box _box;
+  final _categoriesBoxName = 'Categories-box';
+
+  LocalServices(this._hive,);
 
   @override
   Future<void> init() async {
-    await Hive.initFlutter();
-    _box = await Hive.openBox(_categoriesBox);
+    await _hive.initFlutter();
+    _box = await Hive.openBox(_categoriesBoxName);
   }
 
   @override
@@ -32,9 +35,10 @@ class LocalServices implements BaseLocalServices {
 
   @override
   Box<NewsModel> getBox() {
-    return _box;
+    return _box as Box<NewsModel>;
   }
 
+  @override
   bool checkSave(String key){
     return _box.get(key) != null;
   }

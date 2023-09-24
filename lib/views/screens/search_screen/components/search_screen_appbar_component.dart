@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:the_daily_journal/utils/enums/news_categories.dart';
 
 import '../../../../utils/constance/gaps.dart';
 import '../../../../utils/constance/icons.dart';
+import '../../../../view_model/news_cubit/news_cubit.dart';
 import '../../../widgets/circular_icon.dart';
 
 class SearchScreenAppBarComponent extends StatelessWidget
@@ -32,12 +34,12 @@ class SearchScreenAppBarComponent extends StatelessWidget
               decoration: InputDecoration(
                   hintText: 'Search articles',
                   hintStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onSurface,
-                  ),
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
                   border: InputBorder.none),
               onSubmitted: (query) {
-                /// Todo: Refactor this method
-                //NewsCubit.instance(context).fetchNewsByCategory(query: query);
+                NewsCubit.instance(context).fetchNewsByCategory(
+                    category: NewsCategories.search, query: query);
               },
             ),
           ),
@@ -51,15 +53,16 @@ class SearchScreenAppBarComponent extends StatelessWidget
             ]
                 .map(
                   (sort) => PopupMenuItem(
-                child: Text(sort),
-                onTap: () {
-                  debugPrint('sort here is $sort');
-                  // Todo: Refactor this method
-                  // QueryNewsCubit.instance(context)
-                  //     .getQueryNews(query: _controller.text, sort: sort.toLowerCase());
-                },
-              ),
-            )
+                    child: Text(sort),
+                    onTap: () {
+                      debugPrint('sort here is $sort');
+                      NewsCubit.instance(context).fetchNewsByCategory(
+                          category: NewsCategories.search,
+                          query: _controller.text,
+                          sort: sort.toLowerCase());
+                    },
+                  ),
+                )
                 .toList(),
           ),
         ],

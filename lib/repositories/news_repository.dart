@@ -23,13 +23,16 @@ class NewsRepository implements BaseNewsRepository {
     required String path,
     required NewsCategories category,
   }) async {
-    debugPrint('News Repository : First >> ${_cache.keys.toString()}');
+    if (category == NewsCategories.search) {
+      return await _baseNewsApiService.fetchData<List<NewsModel>>(
+          path: path,
+          builder: (maps) => maps.map((e) => NewsModel.fromJson(e)).toList());
+    }
     if (_cache.containsKey(category)) {
       debugPrint('News repository : get from cache');
       return Right(_cache[category]!);
     }
-    debugPrint('News repository : get from data source');
-    final result = await _baseNewsApiService.getData<List<NewsModel>>(
+    final result = await _baseNewsApiService.fetchData<List<NewsModel>>(
         path: path,
         builder: (maps) => maps.map((e) => NewsModel.fromJson(e)).toList());
 

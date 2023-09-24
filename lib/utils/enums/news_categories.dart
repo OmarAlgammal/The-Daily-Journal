@@ -1,5 +1,4 @@
-
-enum NewsCategories{
+enum NewsCategories {
   all,
   fromEgypt,
   sports,
@@ -9,4 +8,5 @@ enum NewsCategories{
   technology,
   science,
   general,
+  search,
 }

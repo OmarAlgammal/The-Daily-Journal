@@ -43,7 +43,8 @@ class _BreakingNewsComponentState extends State<BreakingNewsComponent> {
         }, builder: (context, state) {
           if (state is FailedToLoadNews && news.isEmpty) {
             return Text('Error: ${state.message}');
-          } else if (state is NewsLoading) {
+          }
+          if (state is NewsLoading) {
             return const MyCircularProgressIndicator();
           }
           if (state is NewsLoadedSuccessfully) {
