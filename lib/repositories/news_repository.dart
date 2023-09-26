@@ -14,9 +14,9 @@ abstract class BaseNewsRepository {
 }
 
 class NewsRepository implements BaseNewsRepository {
-  final BaseNewsService _baseNewsApiService;
-  Map<NewsCategories, List<NewsModel>> _cache = {};
-  NewsRepository(this._baseNewsApiService);
+  final BaseNewsService _baseNewsService;
+  Map<NewsCategories, List<NewsModel>> cache = {};
+  NewsRepository(this._baseNewsService);
 
   @override
   Future<Either<ServerFailure, List<NewsModel>>> fetchNewsByCategory({
@@ -24,21 +24,20 @@ class NewsRepository implements BaseNewsRepository {
     required NewsCategories category,
   }) async {
     if (category == NewsCategories.search) {
-      return await _baseNewsApiService.fetchData<List<NewsModel>>(
+      return await _baseNewsService.fetchData<List<NewsModel>>(
           path: path,
           builder: (maps) => maps.map((e) => NewsModel.fromJson(e)).toList());
     }
-    if (_cache.containsKey(category)) {
-      debugPrint('News repository : get from cache');
-      return Right(_cache[category]!);
+    if (cache.containsKey(category)) {
+      return Right(cache[category]!);
     }
-    final result = await _baseNewsApiService.fetchData<List<NewsModel>>(
+    final result = await _baseNewsService.fetchData<List<NewsModel>>(
         path: path,
         builder: (maps) => maps.map((e) => NewsModel.fromJson(e)).toList());
 
     return result.fold((left) => Left(left), (right) {
-      _cache[category] = right;
-      debugPrint('News Repository : Last >> ${_cache.keys.toString()}');
+      cache[category] = right;
+      debugPrint('News Repository : Last >> ${cache.keys.toString()}');
       return Right(right);
     });
   }

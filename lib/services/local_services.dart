@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:hive_flutter/adapters.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
 
 import '../models/news_model.dart';
 
