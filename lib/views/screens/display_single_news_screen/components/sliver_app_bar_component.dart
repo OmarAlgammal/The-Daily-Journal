@@ -154,7 +154,7 @@ class SliverAppBarComponent extends StatelessWidget {
             return false;
           },
             builder: (context, state) {
-              final saved = sl<LocalDatabase>().checkSave(news.title);
+              final saved = sl<LocalDatabase>().saveVerification(news.title);
           return CircularIcon(
             icon: saved
                 ? bookmarkIcon

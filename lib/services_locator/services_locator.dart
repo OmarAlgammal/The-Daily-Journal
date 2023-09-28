@@ -26,7 +26,7 @@ void setup() {
   sl.registerSingleton(NewsService(sl()));
   sl.registerSingleton(NewsRepository(sl<NewsService>()));
   sl.registerLazySingleton(() => Hive);
-  sl.registerLazySingleton(() => LocalServices(sl()));
+  sl.registerLazySingleton(() => LocalServices(sl(),));
   sl.registerLazySingleton(() => LocalDatabase(sl<LocalServices>()));
 
   sl.registerSingleton(AuthCubit(sl<FirebaseAuthentication>()));

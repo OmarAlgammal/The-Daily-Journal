@@ -15,7 +15,7 @@ abstract class BaseLocalServices {
 
   Future<void> delete(String key);
 
-  bool checkSave(String key);
+  bool saveVerification(String key);
 
 }
 
@@ -29,7 +29,7 @@ class LocalServices implements BaseLocalServices {
   @override
   Future<void> init() async {
     await _hive.initFlutter();
-    _box = await Hive.openBox(_categoriesBoxName);
+    _box = await _hive.openBox(_categoriesBoxName);
   }
 
   @override
@@ -43,7 +43,7 @@ class LocalServices implements BaseLocalServices {
   }
 
   @override
-  bool checkSave(String key){
+  bool saveVerification(String key){
     return _box.get(key) != null;
   }
 

@@ -7,6 +7,8 @@ import 'package:mockito/mockito.dart';
 import 'package:the_daily_journal/services/firebase_auth_service.dart';
 
 import '../mock_helpers/mock_generations.mocks.dart';
+import '../mock_helpers/utils/post_expextations.dart';
+import 'local_services_test.dart';
 
 void main() {
   late MockFirebaseAuth mockFirebaseAuth;
@@ -48,7 +50,7 @@ void main() {
   test('signOut() should sign out the user', () async {
     // Arrange
     // Mock the signOut method
-    when(mockFirebaseAuth.signOut()).thenAnswer((_) async {});
+    when(mockFirebaseAuth.signOut()).answerVoid;
 
     // Act
     await firebaseAuthentication.signOut();
@@ -71,22 +73,21 @@ void main() {
   group('signInWithGoogle', () {
     test('signInWithGoogle() should return Right<UserCredential>', () async{
       // Arrange
-      when(mockGoogleSignIn.signIn()).thenAnswer((_) async => mockGoogleSignInAccount);
-      when(mockGoogleSignInAccount?.authentication).thenAnswer((realInvocation) async => mockGoogleSignInAuthentication);
+      when(mockGoogleSignIn.signIn()).answer(mockGoogleSignInAccount);
+      when(mockGoogleSignInAccount?.authentication).answer(mockGoogleSignInAuthentication);
       when(mockGoogleAuthProviderWrapper.credential(mockGoogleSignInAuthentication)).thenReturn(mockOAuthCredential);
-      when(mockFirebaseAuth.signInWithCredential(mockOAuthCredential)).thenAnswer((_) async=> mockUserCredential);
+      when(mockFirebaseAuth.signInWithCredential(mockOAuthCredential)).answer(mockUserCredential);
 
       // Act
       final result = await firebaseAuthentication.signInWithGoogle();
 
       // Assert
       expect(result, isA<Right>());
-      verify(firebaseAuthentication.signInWithGoogle()).called(1);
     });
 
     test('signInWithGoogle() should return Left(<ServerFailure>', () async{
       // Arrange
-      when(mockGoogleSignIn.signIn()).thenAnswer((_) async => null);
+      when(mockGoogleSignIn.signIn()).answerNull;
 
       // Act
       final result = await firebaseAuthentication.signInWithGoogle();
