@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:the_daily_journal/repositories/local_repository.dart';
-import 'package:the_daily_journal/utils/constance/padding.dart';
+import 'package:the_daily_journal/utils/constance/padding/padding.dart';
 
 import '../../../models/news_model.dart';
 import '../../../services_locator/services_locator.dart';
@@ -24,7 +24,7 @@ class BookmarksScreen extends StatelessWidget {
         ),
         actions: [
           CircularIcon(
-              icon: searchIcon,
+              icon: AppIcons.searchIcon,
               onTap: () {
                 /// TODO: Complete this action
               }),

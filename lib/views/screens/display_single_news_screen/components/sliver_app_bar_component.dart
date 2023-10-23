@@ -1,9 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_daily_journal/repositories/local_repository.dart';
 import 'package:the_daily_journal/models/news_model.dart';
-import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
+import 'package:the_daily_journal/repositories/local_repository.dart';
+import 'package:the_daily_journal/utils/extensions/context_extension.dart';
 import 'package:the_daily_journal/utils/helpers/date_factory.dart';
 import 'package:the_daily_journal/views/widgets/my_cached_network_image.dart';
 
@@ -18,7 +17,6 @@ import '../../../widgets/circular_icon.dart';
 class SliverAppBarComponent extends StatelessWidget {
   const SliverAppBarComponent({Key? key, required this.news}) : super(key: key);
   final NewsModel news;
-
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +47,9 @@ class SliverAppBarComponent extends StatelessWidget {
                   ],
                 ),
               ),
-              child: MyCachedNetworkImage(imageUrl: news.imageUrl,),
+              child: MyCachedNetworkImage(
+                imageUrl: news.imageUrl,
+              ),
             ),
             Positioned(
               left: 18,
@@ -138,7 +138,7 @@ class SliverAppBarComponent extends StatelessWidget {
       actions: [
         gap8,
         CircularIcon(
-          icon: arrowLeftIcon,
+          icon: AppIcons.arrowLeftIcon,
           onTap: () {
             Navigator.pop(context);
           },
@@ -146,23 +146,20 @@ class SliverAppBarComponent extends StatelessWidget {
           fillColor: Theme.of(context).colorScheme.onSurface.withOpacity(.4),
         ),
         const Spacer(),
-        BlocBuilder<BookmarkCubit, BookmarkState>(
-          buildWhen: (context, state){
-            if ([BookmarkSavedSuccessfully, BookmarkDeletedSuccessfully].contains(state.runtimeType)){
-              return true;
-            }
-            return false;
-          },
-            builder: (context, state) {
-              final saved = sl<LocalDatabase>().saveVerification(news.title);
+        BlocBuilder<BookmarkCubit, BookmarkState>(buildWhen: (context, state) {
+          if ([BookmarkSavedSuccessfully, BookmarkDeletedSuccessfully]
+              .contains(state.runtimeType)) {
+            return true;
+          }
+          return false;
+        }, builder: (context, state) {
+          final saved = sl<LocalDatabase>().saveVerification(news.title);
           return CircularIcon(
-            icon: saved
-                ? bookmarkIcon
-                : outlinedBookmarkIcon,
+            icon: saved ? AppIcons.bookmarkIcon : AppIcons.outlinedBookmarkIcon,
             onTap: () {
-              if (saved){
+              if (saved) {
                 BookmarkCubit.instance(context).deleteBookmark(news.title);
-              }else{
+              } else {
                 BookmarkCubit.instance(context).saveAsBookmark(news);
               }
             },
@@ -172,7 +169,7 @@ class SliverAppBarComponent extends StatelessWidget {
         }),
         gap8,
         CircularIcon(
-          icon: moreIcon,
+          icon: AppIcons.moreIcon,
           onTap: () {
             /// TODO: Complete this action
           },

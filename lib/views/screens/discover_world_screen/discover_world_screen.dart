@@ -5,19 +5,21 @@ import 'package:the_daily_journal/utils/constance/icons.dart';
 import 'package:the_daily_journal/utils/enums/news_categories.dart';
 import 'package:the_daily_journal/views/widgets/circular_icon.dart';
 
-import '../../../models/news_model.dart';
-import '../all_news_screen/category_screen.dart';
+import '../../../view_model/chip_controller_provider.dart';
+import '../categories_screen/categories_screen.dart';
 import 'components/discover_world_tab_bar_component.dart';
 
 class DiscoverWorldScreen extends StatelessWidget {
   DiscoverWorldScreen({Key? key}) : super(key: key);
 
+  final tabs = NewsCategories.categories();
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: NewsCategories.values.length,
+      length: tabs.length,
       child: ChangeNotifierProvider(
-        create: (context) => ChipController(),
+        create: (context) => ChipController(tabs: tabs),
         child: Scaffold(
           body: NestedScrollView(
             headerSliverBuilder: (context, innerBoxScrolled) {
@@ -33,7 +35,7 @@ class DiscoverWorldScreen extends StatelessWidget {
                     children: [
                       gap16,
                       CircularIcon(
-                        icon: arrowLeftIcon,
+                        icon: AppIcons.arrowLeftIcon,
                         onTap: () {
                           Navigator.pop(context);
                         },
@@ -49,16 +51,12 @@ class DiscoverWorldScreen extends StatelessWidget {
               ];
             },
             body: TabBarView(
-              children: NewsCategories.values
-                  .map((category) => CategoryScreen(category))
-                  .toList(),
+              children:
+                  tabs.map((category) => CategoryScreen(category)).toList(),
             ),
           ),
         ),
       ),
     );
   }
-
-  /// Dummy data
-  final List<NewsModel> news = [];
 }

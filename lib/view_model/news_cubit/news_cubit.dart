@@ -18,18 +18,21 @@ class NewsCubit extends Cubit<NewsState> {
     _baseNewsApiDatabase
         .fetchNewsByCategory(path: path, category: category)
         .then((value) => value.fold(
-            (left) => emit(FailedToLoadNews(left.message)),
+            (left) => left is FailedToLoadNews
+                ? emit(FailedToLoadNews(left.message))
+                : emit(InternetConnectionFailed('No internet connection')),
             (right) => emit(NewsLoadedSuccessfully(right, category))));
   }
 
-  String _getCategoryPath(NewsCategories newsCategory, String? query, String? sort) {
-    if (query != null) {
-      return ApiConstance.allNewsPath(query: query, sort: sort);
-    }
+  String _getCategoryPath(
+      NewsCategories newsCategory, String? query, String? sort) {
     return switch (newsCategory) {
-      NewsCategories.all => ApiConstance.allNewsPath(),
-      NewsCategories.fromEgypt => ApiConstance.topCountryHeadlinesPath('eg', 7),
-      _ => ApiConstance.topCategoryHeadlinesPath(newsCategory.name),
+      NewsCategories.all => ApiConstance.allNewsPath(query: query, sort: sort),
+      _ => newsCategory.countryCode != null
+          ? ApiConstance.topCountryHeadlinesPath(
+              countryCode: newsCategory.countryCode!,
+              pageSize: newsCategory.pageSize)
+          : ApiConstance.allNewsPath(query: newsCategory.title),
     };
   }
 }

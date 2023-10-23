@@ -22,7 +22,7 @@ class SearchScreenAppBarComponent extends StatelessWidget
             onTap: () {
               Navigator.pop(context);
             },
-            icon: arrowLeftIcon,
+            icon: AppIcons.arrowLeftIcon,
           ),
         ],
       ),
@@ -45,7 +45,7 @@ class SearchScreenAppBarComponent extends StatelessWidget
           ),
           PopupMenuButton(
             child: const CircularIcon(
-              icon: filterIcon,
+              icon: AppIcons.filterIcon,
             ),
             itemBuilder: (context) => [
               'Popularity',
@@ -55,11 +55,12 @@ class SearchScreenAppBarComponent extends StatelessWidget
                   (sort) => PopupMenuItem(
                     child: Text(sort),
                     onTap: () {
-                      debugPrint('sort here is $sort');
-                      NewsCubit.instance(context).fetchNewsByCategory(
-                          category: NewsCategories.search,
-                          query: _controller.text,
-                          sort: sort.toLowerCase());
+                      if (_controller.text.trim().isNotEmpty){
+                        NewsCubit.instance(context).fetchNewsByCategory(
+                            category: NewsCategories.search,
+                            query: _controller.text,
+                            sort: sort.toLowerCase());
+                      }
                     },
                   ),
                 )

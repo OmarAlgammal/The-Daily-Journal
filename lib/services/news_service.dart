@@ -7,7 +7,7 @@ import '../core/network/erorrs/exceptions.dart';
 typedef DataBuilder<T> = T Function(List<Map<String, dynamic>> maps);
 
 abstract class BaseNewsService {
-  Future<Either<ServerFailure, T>> fetchData<T>({
+  Future<Either<Failure, T>> fetchData<T>({
     required String path,
     required DataBuilder<T> builder,
   });
@@ -19,7 +19,7 @@ class NewsService implements BaseNewsService {
   NewsService(this._dio);
 
   @override
-  Future<Either<ServerFailure, T>> fetchData<T>({
+  Future<Either<Failure, T>> fetchData<T>({
     required String path,
     required DataBuilder<T> builder,
   }) async {
@@ -31,12 +31,13 @@ class NewsService implements BaseNewsService {
           builder(result.map((e) => e as Map<String, dynamic>).toList()));
 
       /// TODO: Refactor error code
-    } on DioError catch (e) {
-      if (e.type == DioErrorType.connectionError) {
-        return const Left(ServerFailure('No internet connection'));
-      }
-      return const Left(ServerFailure('Failed to get data'));
-    } on ServerException catch (e) {
+    } on DioException catch (e) {
+      return switch(e){
+      DioExceptionType.connectionError =>  const Left(NoInternetConnection('No internet connection')),
+      _ => const Left(ServerFailure('No internet connection')),
+      };
+    }
+    on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     } catch (e) {
       return Left(ServerFailure(e.toString()));

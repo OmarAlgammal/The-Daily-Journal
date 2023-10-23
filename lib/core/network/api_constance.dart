@@ -6,7 +6,7 @@ class ApiConstance {
   static allNewsPath({String? query, String? sort}) => 'everything?q=${query?? 'a'}&sortBy=${sort?? ''}&apiKey=$apiKey';
 
 
-  static String topCountryHeadlinesPath(String countryCode, int? pageSize) {
+  static String topCountryHeadlinesPath({required String countryCode, int? pageSize}) {
     const String endpoint = '$baseUrl/top-headlines';
     final String params = '?country=$countryCode${pageSize != null ? '&pageSize=$pageSize' : ''}&apiKey=$apiKey';
     final String url = '$endpoint$params';

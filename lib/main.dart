@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:the_daily_journal/models/news_model.dart';
 import 'package:the_daily_journal/routing/routers.dart';
@@ -55,8 +54,7 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => sl<NewsCubit>()
-            ..fetchNewsByCategory(
-                category: NewsCategories.fromEgypt)
+          ..fetchNewsByCategory(category: NewsCategories.emirates)
             ..fetchNewsByCategory(category: NewsCategories.all),
         ),
         BlocProvider(create: (context) => sl<BookmarkCubit>()),
@@ -69,7 +67,6 @@ class _MyAppState extends State<MyApp> {
             onGenerateRoute: onGenerate,
             initialRoute: AppRouts.landingScreen,
             debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
             theme: Provider.of<ThemeProvider>(context).themeData,
             //home: BottomNavScreen(),
           ),

@@ -1,8 +1,4 @@
-import 'dart:io';
-
 import 'package:hive_flutter/adapters.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart' as path;
 
 import '../models/news_model.dart';
 
@@ -16,15 +12,16 @@ abstract class BaseLocalServices {
   Future<void> delete(String key);
 
   bool saveVerification(String key);
-
 }
 
 class LocalServices implements BaseLocalServices {
   late final HiveInterface _hive;
-  late final Box _box;
+  late final Box<NewsModel> _box;
   final _categoriesBoxName = 'Categories-box';
 
-  LocalServices(this._hive,);
+  LocalServices(
+    this._hive,
+  );
 
   @override
   Future<void> init() async {
@@ -43,7 +40,7 @@ class LocalServices implements BaseLocalServices {
   }
 
   @override
-  bool saveVerification(String key){
+  bool saveVerification(String key) {
     return _box.get(key) != null;
   }
 
@@ -52,7 +49,7 @@ class LocalServices implements BaseLocalServices {
     await _box.delete(key);
   }
 
-  Future<void> closeBox() async{
+  Future<void> closeBox() async {
     await _box.close();
   }
 }

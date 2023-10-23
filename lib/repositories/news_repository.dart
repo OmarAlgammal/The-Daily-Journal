@@ -7,7 +7,7 @@ import '../core/network/erorrs/server_failure.dart';
 import '../models/news_model.dart';
 
 abstract class BaseNewsRepository {
-  Future<Either<ServerFailure, List<NewsModel>>> fetchNewsByCategory({
+  Future<Either<Failure, List<NewsModel>>> fetchNewsByCategory({
     required String path,
     required NewsCategories category,
   });
@@ -19,7 +19,7 @@ class NewsRepository implements BaseNewsRepository {
   NewsRepository(this._baseNewsService);
 
   @override
-  Future<Either<ServerFailure, List<NewsModel>>> fetchNewsByCategory({
+  Future<Either<Failure, List<NewsModel>>> fetchNewsByCategory({
     required String path,
     required NewsCategories category,
   }) async {

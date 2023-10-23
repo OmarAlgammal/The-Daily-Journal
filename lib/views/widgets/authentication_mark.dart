@@ -8,7 +8,7 @@ class AuthenticationMark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Icon(
-      checkCircleIcon,
+      AppIcons.checkCircleIcon,
       color: Theme.of(context).colorScheme.primary,
       size: 18,
     );

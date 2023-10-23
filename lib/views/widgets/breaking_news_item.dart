@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
+import 'package:the_daily_journal/utils/extensions/context_extension.dart';
 import 'package:the_daily_journal/views/widgets/my_cached_network_image.dart';
 
 import '../../models/news_model.dart';

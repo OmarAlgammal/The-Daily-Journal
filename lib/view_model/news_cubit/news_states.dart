@@ -10,6 +10,7 @@ class NewsState with _$NewsState {
   factory NewsState.newsLoading() = NewsLoading;
 
   factory NewsState.failedToLoadNews(String message) = FailedToLoadNews;
+  factory NewsState.internetConnectionFailed(String message) = InternetConnectionFailed;
 
   factory NewsState.newsLoadedSuccessfully(List<NewsModel> news, NewsCategories category) = NewsLoadedSuccessfully;
 }

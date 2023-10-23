@@ -910,7 +910,7 @@ class MockBaseNewsService extends _i1.Mock implements _i15.BaseNewsService {
   }
 
   @override
-  _i13.Future<_i16.Either<_i17.ServerFailure, T>> fetchData<T>({
+  _i13.Future<_i16.Either<_i17.Failure, T>> fetchData<T>({
     required String? path,
     required _i15.DataBuilder<T>? builder,
   }) =>
@@ -923,8 +923,8 @@ class MockBaseNewsService extends _i1.Mock implements _i15.BaseNewsService {
             #builder: builder,
           },
         ),
-        returnValue: _i13.Future<_i16.Either<_i17.ServerFailure, T>>.value(
-            _i18.dummyValue<_i16.Either<_i17.ServerFailure, T>>(
+        returnValue: _i13.Future<_i16.Either<_i17.Failure, T>>.value(
+            _i18.dummyValue<_i16.Either<_i17.Failure, T>>(
           this,
           Invocation.method(
             #fetchData,
@@ -935,7 +935,7 @@ class MockBaseNewsService extends _i1.Mock implements _i15.BaseNewsService {
             },
           ),
         )),
-      ) as _i13.Future<_i16.Either<_i17.ServerFailure, T>>);
+      ) as _i13.Future<_i16.Either<_i17.Failure, T>>);
 }
 
 /// A class which mocks [BaseLocalServices].

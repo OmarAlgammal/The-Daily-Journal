@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_daily_journal/utils/constance/icons.dart';
-import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
+import 'package:the_daily_journal/utils/extensions/context_extension.dart';
 import 'package:the_daily_journal/utils/helpers/date_factory.dart';
 import 'package:the_daily_journal/view_model/bookmarks_cubit/bookmark_cubit.dart';
 import 'package:the_daily_journal/views/widgets/my_cached_network_image.dart';
@@ -64,7 +64,7 @@ class NewsItem extends StatelessWidget {
                                 .deleteBookmark(news.title);
                           },
                           child: const Icon(
-                            bookmarkIcon,
+                            AppIcons.bookmarkIcon,
                           ),
                         )
                     ],

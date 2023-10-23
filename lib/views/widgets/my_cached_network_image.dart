@@ -22,6 +22,7 @@ class MyCachedNetworkImage extends StatelessWidget {
       placeholder: (context, _) => Container(
         color: brightGreyColor,
       ),
+      fit: BoxFit.fill,
       errorWidget: (context, _, __) => const SizedBox(),
       imageBuilder: imageBuilder ??
           (context, imageProvider) => DecoratedBox(
