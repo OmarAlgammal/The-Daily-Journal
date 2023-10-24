@@ -3,7 +3,7 @@ import 'package:the_daily_journal/routing/routes.dart';
 import 'package:the_daily_journal/views/screens/sign_in_screen/components/continue_with_services_component.dart';
 
 import '../../../utils/constance/gaps.dart';
-import '../../../utils/constance/padding.dart';
+import '../../../utils/constance/padding/padding.dart';
 import 'components/sign_in_with_email_component.dart';
 
 class SignInScreen extends StatelessWidget {

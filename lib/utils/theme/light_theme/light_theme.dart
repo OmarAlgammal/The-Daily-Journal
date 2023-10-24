@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:the_daily_journal/utils/constance/padding.dart';
+import 'package:the_daily_journal/utils/constance/padding/padding.dart';
 
 import 'light_theme_colors.dart';
 

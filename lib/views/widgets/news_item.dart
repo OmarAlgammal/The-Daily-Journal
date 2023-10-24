@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:the_daily_journal/utils/constance/icons.dart';
-import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
+import 'package:the_daily_journal/utils/extensions/context_extension.dart';
 import 'package:the_daily_journal/utils/helpers/date_factory.dart';
 import 'package:the_daily_journal/view_model/bookmarks_cubit/bookmark_cubit.dart';
-import 'package:the_daily_journal/views/widgets/my_cached_image_network.dart';
+import 'package:the_daily_journal/views/widgets/my_cached_network_image.dart';
 
 import '../../models/news_model.dart';
 import '../../routing/routes.dart';
@@ -35,8 +35,10 @@ class NewsItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
-              child: MyCachedImageNetwork(
-                url: news.imageUrl,
+              child: MyCachedNetworkImage(
+                imageUrl: news.imageUrl,
+                width: newsImageWidth,
+                height: newsImageHeight,
               ),
             ),
             gap12,
@@ -62,7 +64,7 @@ class NewsItem extends StatelessWidget {
                                 .deleteBookmark(news.title);
                           },
                           child: const Icon(
-                            bookmarkIcon,
+                            AppIcons.bookmarkIcon,
                           ),
                         )
                     ],
@@ -78,25 +80,13 @@ class NewsItem extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      CircleAvatar(
-                        radius: authorImageRadius,
-                        child: MyCachedImageNetwork(
-                          url: news.authorImageUrl,
-                          itemBuilder: (context, ImageProvider imageProvider) =>
+                      MyCachedNetworkImage(
+                          imageUrl: news.authorImageUrl,
+                          imageBuilder: (context, imageProvider) =>
                               CircleAvatar(
-                            radius: authorImageRadius,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
-                                    colorFilter: ColorFilter.mode(
-                                        Colors.red, BlendMode.colorBurn)),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                                radius: authorImageRadius,
+                                backgroundImage: imageProvider,
+                              )),
                       gap4,
                       Expanded(
                         child: Text(

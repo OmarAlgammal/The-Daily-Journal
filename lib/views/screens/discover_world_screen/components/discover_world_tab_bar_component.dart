@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_daily_journal/utils/constance/gaps.dart';
-import 'package:the_daily_journal/utils/constance/padding.dart';
+import 'package:the_daily_journal/utils/constance/padding/padding.dart';
 import 'package:the_daily_journal/utils/enums/news_categories.dart';
 import 'package:the_daily_journal/views/screens/discover_world_screen/components/discover_world_serach_box_component.dart';
+
+import '../../../../view_model/chip_controller_provider.dart';
 
 class DiscoverWorldTabBarComponent extends StatelessWidget {
   DiscoverWorldTabBarComponent({Key? key}) : super(key: key);
@@ -36,21 +38,21 @@ class DiscoverWorldTabBarComponent extends StatelessWidget {
         TabBar(
           isScrollable: true,
           onTap: (index) {
-            Provider.of<ChipController>(context, listen: false)
+            ChipController.instance(context)
                 .changeChipIndex(index);
           },
           padding: paddingH16,
           labelPadding: paddingH4,
           indicatorColor: Colors.transparent,
           tabs: List.generate(
-            NewsCategories.values.length,
+            ChipController.instance(context).tabs.length,
             (index) => Tab(
               child: Consumer<ChipController>(
                 builder: (context, model, child) => Chip(
                   label: Padding(
                     padding: paddingH4,
                     child: Text(
-                      NewsCategories.values[index].name,
+                      ChipController.instance(context).tabs[index].name,
                       style: TextStyle(
                         color: model.chipIndex == index
                             ? Theme.of(context).colorScheme.background
@@ -69,14 +71,4 @@ class DiscoverWorldTabBarComponent extends StatelessWidget {
   }
 }
 
-class ChipController with ChangeNotifier {
-  /// TODO: Refactor chip controller
-  int _chipIndex = 0;
 
-  int get chipIndex => _chipIndex;
-
-  void changeChipIndex(int index) {
-    _chipIndex = index;
-    notifyListeners();
-  }
-}

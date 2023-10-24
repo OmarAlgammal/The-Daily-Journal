@@ -12,21 +12,27 @@ class NewsCubit extends Cubit<NewsState> {
 
   static NewsCubit instance(context) => BlocProvider.of<NewsCubit>(context);
 
-  void fetchNewsByCategory({required NewsCategories category}) {
+  void fetchNewsByCategory({required category, String? query, String? sort}) {
     emit(NewsLoading());
-    final path = _getCategoryPath(category);
+    final path = _getCategoryPath(category, query, sort);
     _baseNewsApiDatabase
         .fetchNewsByCategory(path: path, category: category)
         .then((value) => value.fold(
-            (left) => emit(FailedToLoadNews(left.message)),
+            (left) => left is FailedToLoadNews
+                ? emit(FailedToLoadNews(left.message))
+                : emit(InternetConnectionFailed('No internet connection')),
             (right) => emit(NewsLoadedSuccessfully(right, category))));
   }
 
-  String _getCategoryPath(NewsCategories newsCategory) {
+  String _getCategoryPath(
+      NewsCategories newsCategory, String? query, String? sort) {
     return switch (newsCategory) {
-      NewsCategories.all => ApiConstance.allNewsPath(),
-      NewsCategories.fromEgypt => ApiConstance.topCountryHeadlinesPath('eg', 7),
-      _ => ApiConstance.topCategoryHeadlinesPath(newsCategory.name),
+      NewsCategories.all => ApiConstance.allNewsPath(query: query, sort: sort),
+      _ => newsCategory.countryCode != null
+          ? ApiConstance.topCountryHeadlinesPath(
+              countryCode: newsCategory.countryCode!,
+              pageSize: newsCategory.pageSize)
+          : ApiConstance.allNewsPath(query: newsCategory.title),
     };
   }
 }

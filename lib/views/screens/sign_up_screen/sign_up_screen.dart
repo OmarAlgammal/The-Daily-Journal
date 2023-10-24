@@ -3,7 +3,7 @@ import 'package:the_daily_journal/utils/constance/border_radius.dart';
 import 'package:the_daily_journal/views/widgets/my_button.dart';
 
 import '../../../utils/constance/gaps.dart';
-import '../../../utils/constance/padding.dart';
+import '../../../utils/constance/padding/padding.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);

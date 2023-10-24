@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/models/news_model.dart';
 import 'package:the_daily_journal/repositories/local_repository.dart';
-import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
-import 'package:the_daily_journal/utils/helpers/date_factory.dart';
-import 'package:the_daily_journal/views/widgets/my_cached_image_network.dart';
+import 'package:the_daily_journal/utils/extensions/context_extension.dart';
 
 import '../../../../services_locator/services_locator.dart';
 import '../../../../utils/constance/gaps.dart';
 import '../../../../utils/constance/icons.dart';
+import '../../../../utils/helpers/date_factory.dart';
 import '../../../../utils/theme/colors.dart';
 import '../../../../view_model/bookmarks_cubit/bookmark_cubit.dart';
 import '../../../../view_model/bookmarks_cubit/bookmark_states.dart';
 import '../../../widgets/circular_icon.dart';
+import '../../../widgets/my_cached_network_image.dart';
 
 class SliverAppBarComponent extends StatelessWidget {
   const SliverAppBarComponent({Key? key, required this.news}) : super(key: key);
@@ -47,8 +47,8 @@ class SliverAppBarComponent extends StatelessWidget {
                   ],
                 ),
               ),
-              child: MyCachedImageNetwork(
-                url: news.imageUrl,
+              child: MyCachedNetworkImage(
+                imageUrl: news.imageUrl,
               ),
             ),
             Positioned(
@@ -138,7 +138,7 @@ class SliverAppBarComponent extends StatelessWidget {
       actions: [
         gap8,
         CircularIcon(
-          icon: arrowLeftIcon,
+          icon: AppIcons.arrowLeftIcon,
           onTap: () {
             Navigator.pop(context);
           },
@@ -153,9 +153,9 @@ class SliverAppBarComponent extends StatelessWidget {
           }
           return false;
         }, builder: (context, state) {
-          final saved = sl<LocalDatabase>().checkSave(news.title);
+          final saved = sl<LocalDatabase>().saveVerification(news.title);
           return CircularIcon(
-            icon: saved ? bookmarkIcon : outlinedBookmarkIcon,
+            icon: saved ? AppIcons.bookmarkIcon : AppIcons.outlinedBookmarkIcon,
             onTap: () {
               if (saved) {
                 BookmarkCubit.instance(context).deleteBookmark(news.title);
@@ -169,7 +169,7 @@ class SliverAppBarComponent extends StatelessWidget {
         }),
         gap8,
         CircularIcon(
-          icon: moreIcon,
+          icon: AppIcons.moreIcon,
           onTap: () {
             /// TODO: Complete this action
           },

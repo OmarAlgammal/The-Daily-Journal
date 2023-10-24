@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
+import 'package:the_daily_journal/utils/extensions/context_extension.dart';
 
 class MyCircularProgressIndicator extends StatelessWidget {
   const MyCircularProgressIndicator({Key? key, this.dimens}) : super(key: key);

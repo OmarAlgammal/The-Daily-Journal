@@ -15,18 +15,18 @@ class HomeAppBarComponent extends StatelessWidget
       actions: [
         gap16,
         CircularIcon(
-          icon: menuIcon,
+          icon: AppIcons.menuIcon,
           onTap: (){
             /// TODO: Complete this action
           },
         ),
         const Spacer(),
-        CircularIcon(icon: searchIcon, onTap: (){
+        CircularIcon(icon: AppIcons.searchIcon, onTap: (){
           Navigator.of(context, rootNavigator: true).pushNamed(AppRouts.searchScreen);
         },),
         gap8,
         CircularIcon(
-          icon: bellIcon,
+          icon: AppIcons.bellIcon,
           onTap: (){
             /// TODO: Complete this action
           },

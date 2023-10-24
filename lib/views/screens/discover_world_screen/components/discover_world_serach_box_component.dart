@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_daily_journal/routing/routes.dart';
 import 'package:the_daily_journal/utils/constance/border_radius.dart';
 import 'package:the_daily_journal/utils/constance/icons.dart';
-import 'package:the_daily_journal/utils/constance/padding.dart';
+import 'package:the_daily_journal/utils/constance/padding/padding.dart';
 
 class DiscoverWorldSearchBoxComponent extends StatelessWidget {
   const DiscoverWorldSearchBoxComponent({Key? key}) : super(key: key);
@@ -21,8 +21,8 @@ class DiscoverWorldSearchBoxComponent extends StatelessWidget {
             contentPadding: padding8,
             fillColor: Theme.of(context).colorScheme.surface,
             filled: true,
-            prefixIcon: const Icon(searchIcon),
-            suffixIcon: const Icon(filterIcon),
+            prefixIcon: const Icon(AppIcons.searchIcon),
+            suffixIcon: const Icon(AppIcons.filterIcon),
             border: const OutlineInputBorder(
               borderRadius: circularMax,
               borderSide: BorderSide.none,

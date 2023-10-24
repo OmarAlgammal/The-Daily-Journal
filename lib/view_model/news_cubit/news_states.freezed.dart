@@ -20,6 +20,7 @@ mixin _$NewsState {
   TResult when<TResult extends Object?>({
     required TResult Function() newsLoading,
     required TResult Function(String message) failedToLoadNews,
+    required TResult Function(String message) internetConnectionFailed,
     required TResult Function(List<NewsModel> news, NewsCategories category)
         newsLoadedSuccessfully,
   }) =>
@@ -28,6 +29,7 @@ mixin _$NewsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? newsLoading,
     TResult? Function(String message)? failedToLoadNews,
+    TResult? Function(String message)? internetConnectionFailed,
     TResult? Function(List<NewsModel> news, NewsCategories category)?
         newsLoadedSuccessfully,
   }) =>
@@ -36,6 +38,7 @@ mixin _$NewsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? newsLoading,
     TResult Function(String message)? failedToLoadNews,
+    TResult Function(String message)? internetConnectionFailed,
     TResult Function(List<NewsModel> news, NewsCategories category)?
         newsLoadedSuccessfully,
     required TResult orElse(),
@@ -45,6 +48,8 @@ mixin _$NewsState {
   TResult map<TResult extends Object?>({
     required TResult Function(NewsLoading value) newsLoading,
     required TResult Function(FailedToLoadNews value) failedToLoadNews,
+    required TResult Function(InternetConnectionFailed value)
+        internetConnectionFailed,
     required TResult Function(NewsLoadedSuccessfully value)
         newsLoadedSuccessfully,
   }) =>
@@ -53,6 +58,7 @@ mixin _$NewsState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(NewsLoading value)? newsLoading,
     TResult? Function(FailedToLoadNews value)? failedToLoadNews,
+    TResult? Function(InternetConnectionFailed value)? internetConnectionFailed,
     TResult? Function(NewsLoadedSuccessfully value)? newsLoadedSuccessfully,
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +66,7 @@ mixin _$NewsState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NewsLoading value)? newsLoading,
     TResult Function(FailedToLoadNews value)? failedToLoadNews,
+    TResult Function(InternetConnectionFailed value)? internetConnectionFailed,
     TResult Function(NewsLoadedSuccessfully value)? newsLoadedSuccessfully,
     required TResult orElse(),
   }) =>
@@ -123,6 +130,7 @@ class _$NewsLoading implements NewsLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() newsLoading,
     required TResult Function(String message) failedToLoadNews,
+    required TResult Function(String message) internetConnectionFailed,
     required TResult Function(List<NewsModel> news, NewsCategories category)
         newsLoadedSuccessfully,
   }) {
@@ -134,6 +142,7 @@ class _$NewsLoading implements NewsLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? newsLoading,
     TResult? Function(String message)? failedToLoadNews,
+    TResult? Function(String message)? internetConnectionFailed,
     TResult? Function(List<NewsModel> news, NewsCategories category)?
         newsLoadedSuccessfully,
   }) {
@@ -145,6 +154,7 @@ class _$NewsLoading implements NewsLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? newsLoading,
     TResult Function(String message)? failedToLoadNews,
+    TResult Function(String message)? internetConnectionFailed,
     TResult Function(List<NewsModel> news, NewsCategories category)?
         newsLoadedSuccessfully,
     required TResult orElse(),
@@ -160,6 +170,8 @@ class _$NewsLoading implements NewsLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(NewsLoading value) newsLoading,
     required TResult Function(FailedToLoadNews value) failedToLoadNews,
+    required TResult Function(InternetConnectionFailed value)
+        internetConnectionFailed,
     required TResult Function(NewsLoadedSuccessfully value)
         newsLoadedSuccessfully,
   }) {
@@ -171,6 +183,7 @@ class _$NewsLoading implements NewsLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(NewsLoading value)? newsLoading,
     TResult? Function(FailedToLoadNews value)? failedToLoadNews,
+    TResult? Function(InternetConnectionFailed value)? internetConnectionFailed,
     TResult? Function(NewsLoadedSuccessfully value)? newsLoadedSuccessfully,
   }) {
     return newsLoading?.call(this);
@@ -181,6 +194,7 @@ class _$NewsLoading implements NewsLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NewsLoading value)? newsLoading,
     TResult Function(FailedToLoadNews value)? failedToLoadNews,
+    TResult Function(InternetConnectionFailed value)? internetConnectionFailed,
     TResult Function(NewsLoadedSuccessfully value)? newsLoadedSuccessfully,
     required TResult orElse(),
   }) {
@@ -261,6 +275,7 @@ class _$FailedToLoadNews implements FailedToLoadNews {
   TResult when<TResult extends Object?>({
     required TResult Function() newsLoading,
     required TResult Function(String message) failedToLoadNews,
+    required TResult Function(String message) internetConnectionFailed,
     required TResult Function(List<NewsModel> news, NewsCategories category)
         newsLoadedSuccessfully,
   }) {
@@ -272,6 +287,7 @@ class _$FailedToLoadNews implements FailedToLoadNews {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? newsLoading,
     TResult? Function(String message)? failedToLoadNews,
+    TResult? Function(String message)? internetConnectionFailed,
     TResult? Function(List<NewsModel> news, NewsCategories category)?
         newsLoadedSuccessfully,
   }) {
@@ -283,6 +299,7 @@ class _$FailedToLoadNews implements FailedToLoadNews {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? newsLoading,
     TResult Function(String message)? failedToLoadNews,
+    TResult Function(String message)? internetConnectionFailed,
     TResult Function(List<NewsModel> news, NewsCategories category)?
         newsLoadedSuccessfully,
     required TResult orElse(),
@@ -298,6 +315,8 @@ class _$FailedToLoadNews implements FailedToLoadNews {
   TResult map<TResult extends Object?>({
     required TResult Function(NewsLoading value) newsLoading,
     required TResult Function(FailedToLoadNews value) failedToLoadNews,
+    required TResult Function(InternetConnectionFailed value)
+        internetConnectionFailed,
     required TResult Function(NewsLoadedSuccessfully value)
         newsLoadedSuccessfully,
   }) {
@@ -309,6 +328,7 @@ class _$FailedToLoadNews implements FailedToLoadNews {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(NewsLoading value)? newsLoading,
     TResult? Function(FailedToLoadNews value)? failedToLoadNews,
+    TResult? Function(InternetConnectionFailed value)? internetConnectionFailed,
     TResult? Function(NewsLoadedSuccessfully value)? newsLoadedSuccessfully,
   }) {
     return failedToLoadNews?.call(this);
@@ -319,6 +339,7 @@ class _$FailedToLoadNews implements FailedToLoadNews {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NewsLoading value)? newsLoading,
     TResult Function(FailedToLoadNews value)? failedToLoadNews,
+    TResult Function(InternetConnectionFailed value)? internetConnectionFailed,
     TResult Function(NewsLoadedSuccessfully value)? newsLoadedSuccessfully,
     required TResult orElse(),
   }) {
@@ -336,6 +357,159 @@ abstract class FailedToLoadNews implements NewsState {
   @JsonKey(ignore: true)
   _$$FailedToLoadNewsCopyWith<_$FailedToLoadNews> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InternetConnectionFailedCopyWith<$Res> {
+  factory _$$InternetConnectionFailedCopyWith(_$InternetConnectionFailed value,
+          $Res Function(_$InternetConnectionFailed) then) =
+      __$$InternetConnectionFailedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$InternetConnectionFailedCopyWithImpl<$Res>
+    extends _$NewsStateCopyWithImpl<$Res, _$InternetConnectionFailed>
+    implements _$$InternetConnectionFailedCopyWith<$Res> {
+  __$$InternetConnectionFailedCopyWithImpl(_$InternetConnectionFailed _value,
+      $Res Function(_$InternetConnectionFailed) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$InternetConnectionFailed(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InternetConnectionFailed implements InternetConnectionFailed {
+  _$InternetConnectionFailed(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'NewsState.internetConnectionFailed(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InternetConnectionFailed &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InternetConnectionFailedCopyWith<_$InternetConnectionFailed>
+      get copyWith =>
+          __$$InternetConnectionFailedCopyWithImpl<_$InternetConnectionFailed>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() newsLoading,
+    required TResult Function(String message) failedToLoadNews,
+    required TResult Function(String message) internetConnectionFailed,
+    required TResult Function(List<NewsModel> news, NewsCategories category)
+        newsLoadedSuccessfully,
+  }) {
+    return internetConnectionFailed(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? newsLoading,
+    TResult? Function(String message)? failedToLoadNews,
+    TResult? Function(String message)? internetConnectionFailed,
+    TResult? Function(List<NewsModel> news, NewsCategories category)?
+        newsLoadedSuccessfully,
+  }) {
+    return internetConnectionFailed?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? newsLoading,
+    TResult Function(String message)? failedToLoadNews,
+    TResult Function(String message)? internetConnectionFailed,
+    TResult Function(List<NewsModel> news, NewsCategories category)?
+        newsLoadedSuccessfully,
+    required TResult orElse(),
+  }) {
+    if (internetConnectionFailed != null) {
+      return internetConnectionFailed(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NewsLoading value) newsLoading,
+    required TResult Function(FailedToLoadNews value) failedToLoadNews,
+    required TResult Function(InternetConnectionFailed value)
+        internetConnectionFailed,
+    required TResult Function(NewsLoadedSuccessfully value)
+        newsLoadedSuccessfully,
+  }) {
+    return internetConnectionFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(NewsLoading value)? newsLoading,
+    TResult? Function(FailedToLoadNews value)? failedToLoadNews,
+    TResult? Function(InternetConnectionFailed value)? internetConnectionFailed,
+    TResult? Function(NewsLoadedSuccessfully value)? newsLoadedSuccessfully,
+  }) {
+    return internetConnectionFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NewsLoading value)? newsLoading,
+    TResult Function(FailedToLoadNews value)? failedToLoadNews,
+    TResult Function(InternetConnectionFailed value)? internetConnectionFailed,
+    TResult Function(NewsLoadedSuccessfully value)? newsLoadedSuccessfully,
+    required TResult orElse(),
+  }) {
+    if (internetConnectionFailed != null) {
+      return internetConnectionFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InternetConnectionFailed implements NewsState {
+  factory InternetConnectionFailed(final String message) =
+      _$InternetConnectionFailed;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$InternetConnectionFailedCopyWith<_$InternetConnectionFailed>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -422,6 +596,7 @@ class _$NewsLoadedSuccessfully implements NewsLoadedSuccessfully {
   TResult when<TResult extends Object?>({
     required TResult Function() newsLoading,
     required TResult Function(String message) failedToLoadNews,
+    required TResult Function(String message) internetConnectionFailed,
     required TResult Function(List<NewsModel> news, NewsCategories category)
         newsLoadedSuccessfully,
   }) {
@@ -433,6 +608,7 @@ class _$NewsLoadedSuccessfully implements NewsLoadedSuccessfully {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? newsLoading,
     TResult? Function(String message)? failedToLoadNews,
+    TResult? Function(String message)? internetConnectionFailed,
     TResult? Function(List<NewsModel> news, NewsCategories category)?
         newsLoadedSuccessfully,
   }) {
@@ -444,6 +620,7 @@ class _$NewsLoadedSuccessfully implements NewsLoadedSuccessfully {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? newsLoading,
     TResult Function(String message)? failedToLoadNews,
+    TResult Function(String message)? internetConnectionFailed,
     TResult Function(List<NewsModel> news, NewsCategories category)?
         newsLoadedSuccessfully,
     required TResult orElse(),
@@ -459,6 +636,8 @@ class _$NewsLoadedSuccessfully implements NewsLoadedSuccessfully {
   TResult map<TResult extends Object?>({
     required TResult Function(NewsLoading value) newsLoading,
     required TResult Function(FailedToLoadNews value) failedToLoadNews,
+    required TResult Function(InternetConnectionFailed value)
+        internetConnectionFailed,
     required TResult Function(NewsLoadedSuccessfully value)
         newsLoadedSuccessfully,
   }) {
@@ -470,6 +649,7 @@ class _$NewsLoadedSuccessfully implements NewsLoadedSuccessfully {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(NewsLoading value)? newsLoading,
     TResult? Function(FailedToLoadNews value)? failedToLoadNews,
+    TResult? Function(InternetConnectionFailed value)? internetConnectionFailed,
     TResult? Function(NewsLoadedSuccessfully value)? newsLoadedSuccessfully,
   }) {
     return newsLoadedSuccessfully?.call(this);
@@ -480,6 +660,7 @@ class _$NewsLoadedSuccessfully implements NewsLoadedSuccessfully {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NewsLoading value)? newsLoading,
     TResult Function(FailedToLoadNews value)? failedToLoadNews,
+    TResult Function(InternetConnectionFailed value)? internetConnectionFailed,
     TResult Function(NewsLoadedSuccessfully value)? newsLoadedSuccessfully,
     required TResult orElse(),
   }) {

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:the_daily_journal/utils/constance/padding/padding.dart';
+import 'package:the_daily_journal/views/screens/world_screen/components/girde_view_discover_world_screen.dart';
+
+import 'components/app_bar_world_screen.dart';
 
 class WorldScreen extends StatelessWidget {
   const WorldScreen({Key? key}) : super(key: key);
@@ -6,19 +10,10 @@ class WorldScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text.rich(
-          TextSpan(
-            text: 'Stay tuned',
-            style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-            children: [
-              TextSpan(text: '\n  coming soon', style: Theme.of(context).textTheme.headlineMedium),
-            ]
-          ),
-        ),
+      appBar: const AppBarWorldScreen(),
+      body: Padding(
+        padding: padding16,
+        child: GridViewDiscoverWorld(),
       ),
     );
   }

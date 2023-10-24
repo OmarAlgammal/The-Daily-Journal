@@ -11,7 +11,7 @@ abstract class BaseLocalDatabase{
 
   Future<void> deleteBookmark(String key);
 
-  bool checkSave(String key);
+  bool saveVerification(String key);
 }
 
 class LocalDatabase implements BaseLocalDatabase{
@@ -36,8 +36,8 @@ class LocalDatabase implements BaseLocalDatabase{
   }
 
   @override
-  bool checkSave(String key) {
-    return _baseLocalServices.checkSave(key);
+  bool saveVerification(String key) {
+    return _baseLocalServices.saveVerification(key);
   }
 
 

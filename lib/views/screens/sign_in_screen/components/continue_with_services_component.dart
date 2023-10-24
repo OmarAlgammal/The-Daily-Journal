@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
+import 'package:the_daily_journal/utils/extensions/context_extension.dart';
 
 import '../../../../utils/constance/gaps.dart';
 import '../../../../utils/constance/icons.dart';
@@ -19,7 +19,7 @@ class ContinueWithServicesComponent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           RegisterItemDesign(
-            icon: facebookIcon,
+            icon: AppIcons.facebookIcon,
             iconColor: blueColor,
             registrationText: 'Continue With Facebook',
             onPressed: () {
@@ -40,7 +40,7 @@ class ContinueWithServicesComponent extends StatelessWidget {
           ),
           gap16,
           RegisterItemDesign(
-            icon: appleIcon,
+            icon: AppIcons.appleIcon,
             iconColor: blackColor,
             registrationText: 'Continue with Apple',
             onPressed: () {

@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
 part 'news_model.freezed.dart';
+
 part 'news_model.g.dart';
 
 @Freezed()
@@ -22,7 +23,7 @@ class NewsModel with _$NewsModel {
   }) = _News;
 
   factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
-        sourceName: json['source']['name'] ?? '',
+        sourceName: json['source']['name'] ??  '',
         sourceLogoUrl: 'https://www.spa.gov.sa/include/images/logo.png',
         category: 'Business',
         authorName: json['author'] ?? 'unavailable',
@@ -32,7 +33,8 @@ class NewsModel with _$NewsModel {
         description: json['description'] ?? '',
         content: json['content'] ?? '',
         url: json['url'] ?? '',
-        imageUrl: json['urlToImage'] ?? 'https://media.istockphoto.com/id/1369150014/vector/breaking-news-with-world-map-background-vector.jpg?s=612x612&w=0&k=20&c=9pR2-nDBhb7cOvvZU_VdgkMmPJXrBQ4rB1AkTXxRIKM=',
-        publishedDate: DateTime.parse(json['publishedAt'] ?? ''),
+        imageUrl: json['urlToImage'] ??
+            'https://media.istockphoto.com/id/1369150014/vector/breaking-news-with-world-map-background-vector.jpg?s=612x612&w=0&k=20&c=9pR2-nDBhb7cOvvZU_VdgkMmPJXrBQ4rB1AkTXxRIKM=',
+        publishedDate: DateTime.parse(json['publishedAt'] ?? DateTime.now().toString()),
       );
 }

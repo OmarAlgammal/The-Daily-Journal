@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:the_daily_journal/utils/extensions/screen_dimens.dart';
-import 'package:the_daily_journal/views/widgets/my_cached_image_network.dart';
+import 'package:the_daily_journal/utils/extensions/context_extension.dart';
+import 'package:the_daily_journal/views/widgets/my_cached_network_image.dart';
 
 import '../../models/news_model.dart';
 import '../../utils/constance/gaps.dart';
@@ -28,14 +28,18 @@ class BreakingNewsItem extends StatelessWidget {
                   offset: const Offset(
                     0,
                     1,
-                  ) // Changes position of shadow
-                )
+                  ), // Changes position of shadow
+                ),
               ]),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(24),
             child: Opacity(
               opacity: .5,
-              child: MyCachedImageNetwork(url: news.imageUrl,),
+              child: MyCachedNetworkImage(
+                imageUrl: news.imageUrl,
+                height: context.screenHeight() / 3.5,
+                width: (context.screenWidth() / 10) * 9,
+              ),
             ),
           ),
         ),

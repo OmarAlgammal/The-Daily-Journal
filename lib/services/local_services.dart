@@ -11,18 +11,22 @@ abstract class BaseLocalServices {
 
   Future<void> delete(String key);
 
-  bool checkSave(String key);
-
+  bool saveVerification(String key);
 }
 
 class LocalServices implements BaseLocalServices {
-  late Box<NewsModel> _box;
-  final _categoriesBox = 'CategoriesBox';
+  late final HiveInterface _hive;
+  late final Box<NewsModel> _box;
+  final _categoriesBoxName = 'Categories-box';
+
+  LocalServices(
+    this._hive,
+  );
 
   @override
   Future<void> init() async {
-    await Hive.initFlutter();
-    _box = await Hive.openBox(_categoriesBox);
+    await _hive.initFlutter();
+    _box = await _hive.openBox(_categoriesBoxName);
   }
 
   @override
@@ -32,10 +36,11 @@ class LocalServices implements BaseLocalServices {
 
   @override
   Box<NewsModel> getBox() {
-    return _box;
+    return _box as Box<NewsModel>;
   }
 
-  bool checkSave(String key){
+  @override
+  bool saveVerification(String key) {
     return _box.get(key) != null;
   }
 
@@ -44,7 +49,7 @@ class LocalServices implements BaseLocalServices {
     await _box.delete(key);
   }
 
-  Future<void> closeBox() async{
+  Future<void> closeBox() async {
     await _box.close();
   }
 }

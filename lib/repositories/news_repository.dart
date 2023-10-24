@@ -7,35 +7,37 @@ import '../core/network/erorrs/server_failure.dart';
 import '../models/news_model.dart';
 
 abstract class BaseNewsRepository {
-  Future<Either<ServerFailure, List<NewsModel>>> fetchNewsByCategory({
+  Future<Either<Failure, List<NewsModel>>> fetchNewsByCategory({
     required String path,
     required NewsCategories category,
   });
 }
 
 class NewsRepository implements BaseNewsRepository {
-  final BaseNewsService _baseNewsApiService;
-  Map<NewsCategories, List<NewsModel>> _cache = {};
-  NewsRepository(this._baseNewsApiService);
+  final BaseNewsService _baseNewsService;
+  Map<NewsCategories, List<NewsModel>> cache = {};
+  NewsRepository(this._baseNewsService);
 
   @override
-  Future<Either<ServerFailure, List<NewsModel>>> fetchNewsByCategory({
+  Future<Either<Failure, List<NewsModel>>> fetchNewsByCategory({
     required String path,
     required NewsCategories category,
   }) async {
-    debugPrint('News Repository : First >> ${_cache.keys.toString()}');
-    if (_cache.containsKey(category)) {
-      debugPrint('News repository : get from cache');
-      return Right(_cache[category]!);
+    if (category == NewsCategories.search) {
+      return await _baseNewsService.fetchData<List<NewsModel>>(
+          path: path,
+          builder: (maps) => maps.map((e) => NewsModel.fromJson(e)).toList());
     }
-    debugPrint('News repository : get from data source');
-    final result = await _baseNewsApiService.getData<List<NewsModel>>(
+    if (cache.containsKey(category)) {
+      return Right(cache[category]!);
+    }
+    final result = await _baseNewsService.fetchData<List<NewsModel>>(
         path: path,
         builder: (maps) => maps.map((e) => NewsModel.fromJson(e)).toList());
 
     return result.fold((left) => Left(left), (right) {
-      _cache[category] = right;
-      debugPrint('News Repository : Last >> ${_cache.keys.toString()}');
+      cache[category] = right;
+      debugPrint('News Repository : Last >> ${cache.keys.toString()}');
       return Right(right);
     });
   }
