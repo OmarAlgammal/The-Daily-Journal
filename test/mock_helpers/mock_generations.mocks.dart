@@ -4,32 +4,27 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i13;
-import 'dart:typed_data' as _i23;
+import 'dart:typed_data' as _i19;
 
-import 'package:dio/dio.dart' as _i12;
 import 'package:dio/src/adapter.dart' as _i3;
 import 'package:dio/src/cancel_token.dart' as _i14;
+import 'package:dio/src/dio.dart' as _i12;
 import 'package:dio/src/dio_mixin.dart' as _i5;
 import 'package:dio/src/options.dart' as _i2;
 import 'package:dio/src/response.dart' as _i6;
 import 'package:dio/src/transformer.dart' as _i4;
-import 'package:either_dart/either.dart' as _i16;
 import 'package:firebase_auth/firebase_auth.dart' as _i10;
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart'
     as _i9;
 import 'package:firebase_core/firebase_core.dart' as _i8;
 import 'package:google_sign_in/google_sign_in.dart' as _i11;
-import 'package:hive/src/box/default_compaction_strategy.dart' as _i22;
-import 'package:hive/src/box/default_key_comparator.dart' as _i21;
+import 'package:hive/src/box/default_compaction_strategy.dart' as _i18;
+import 'package:hive/src/box/default_key_comparator.dart' as _i17;
 import 'package:hive_flutter/adapters.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i18;
-import 'package:the_daily_journal/core/network/erorrs/server_failure.dart'
-    as _i17;
-import 'package:the_daily_journal/models/news_model.dart' as _i20;
-import 'package:the_daily_journal/services/firebase_auth_service.dart' as _i24;
-import 'package:the_daily_journal/services/local_services.dart' as _i19;
-import 'package:the_daily_journal/services/news_service.dart' as _i15;
+import 'package:the_daily_journal/models/news_model.dart' as _i16;
+import 'package:the_daily_journal/services/firebase_auth_service.dart' as _i20;
+import 'package:the_daily_journal/services/local_services.dart' as _i15;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -901,47 +896,10 @@ class MockDio extends _i1.Mock implements _i12.Dio {
       ) as _i13.Future<_i6.Response<T>>);
 }
 
-/// A class which mocks [BaseNewsService].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockBaseNewsService extends _i1.Mock implements _i15.BaseNewsService {
-  MockBaseNewsService() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i13.Future<_i16.Either<_i17.Failure, T>> fetchData<T>({
-    required String? path,
-    required _i15.DataBuilder<T>? builder,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #fetchData,
-          [],
-          {
-            #path: path,
-            #builder: builder,
-          },
-        ),
-        returnValue: _i13.Future<_i16.Either<_i17.Failure, T>>.value(
-            _i18.dummyValue<_i16.Either<_i17.Failure, T>>(
-          this,
-          Invocation.method(
-            #fetchData,
-            [],
-            {
-              #path: path,
-              #builder: builder,
-            },
-          ),
-        )),
-      ) as _i13.Future<_i16.Either<_i17.Failure, T>>);
-}
-
 /// A class which mocks [BaseLocalServices].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBaseLocalServices extends _i1.Mock implements _i19.BaseLocalServices {
+class MockBaseLocalServices extends _i1.Mock implements _i15.BaseLocalServices {
   MockBaseLocalServices() {
     _i1.throwOnMissingStub(this);
   }
@@ -958,7 +916,7 @@ class MockBaseLocalServices extends _i1.Mock implements _i19.BaseLocalServices {
   @override
   _i13.Future<void> writeData(
     String? key,
-    _i20.NewsModel? value,
+    _i16.NewsModel? value,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -972,19 +930,19 @@ class MockBaseLocalServices extends _i1.Mock implements _i19.BaseLocalServices {
         returnValueForMissingStub: _i13.Future<void>.value(),
       ) as _i13.Future<void>);
   @override
-  _i7.Box<_i20.NewsModel> getBox() => (super.noSuchMethod(
+  _i7.Box<_i16.NewsModel> getBox() => (super.noSuchMethod(
         Invocation.method(
           #getBox,
           [],
         ),
-        returnValue: _FakeBox_5<_i20.NewsModel>(
+        returnValue: _FakeBox_5<_i16.NewsModel>(
           this,
           Invocation.method(
             #getBox,
             [],
           ),
         ),
-      ) as _i7.Box<_i20.NewsModel>);
+      ) as _i7.Box<_i16.NewsModel>);
   @override
   _i13.Future<void> delete(String? key) => (super.noSuchMethod(
         Invocation.method(
@@ -1030,11 +988,11 @@ class MockHiveInterface extends _i1.Mock implements _i7.HiveInterface {
   _i13.Future<_i7.Box<E>> openBox<E>(
     String? name, {
     _i7.HiveCipher? encryptionCipher,
-    _i7.KeyComparator? keyComparator = _i21.defaultKeyComparator,
-    _i7.CompactionStrategy? compactionStrategy = _i22.defaultCompactionStrategy,
+    _i7.KeyComparator? keyComparator = _i17.defaultKeyComparator,
+    _i7.CompactionStrategy? compactionStrategy = _i18.defaultCompactionStrategy,
     bool? crashRecovery = true,
     String? path,
-    _i23.Uint8List? bytes,
+    _i19.Uint8List? bytes,
     String? collection,
     List<int>? encryptionKey,
   }) =>
@@ -1075,8 +1033,8 @@ class MockHiveInterface extends _i1.Mock implements _i7.HiveInterface {
   _i13.Future<_i7.LazyBox<E>> openLazyBox<E>(
     String? name, {
     _i7.HiveCipher? encryptionCipher,
-    _i7.KeyComparator? keyComparator = _i21.defaultKeyComparator,
-    _i7.CompactionStrategy? compactionStrategy = _i22.defaultCompactionStrategy,
+    _i7.KeyComparator? keyComparator = _i17.defaultKeyComparator,
+    _i7.CompactionStrategy? compactionStrategy = _i18.defaultCompactionStrategy,
     bool? crashRecovery = true,
     String? path,
     String? collection,
@@ -2336,7 +2294,7 @@ class MockUser extends _i1.Mock implements _i10.User {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGoogleAuthProviderWrapper extends _i1.Mock
-    implements _i24.GoogleAuthProviderWrapper {
+    implements _i20.GoogleAuthProviderWrapper {
   MockGoogleAuthProviderWrapper() {
     _i1.throwOnMissingStub(this);
   }

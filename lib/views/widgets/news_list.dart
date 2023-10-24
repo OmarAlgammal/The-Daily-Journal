@@ -28,7 +28,6 @@ class NewsList extends StatelessWidget {
     return Padding(
       padding: showPadding ? AppPadding.screenPadding : EdgeInsets.zero,
       child: BlocBuilder<NewsCubit, NewsState>(builder: (context, state) {
-        debugPrint('state is $state');
         if (state is NewsLoadedSuccessfully) {
           return child?.call(state.news) ??
               ListView.separated(

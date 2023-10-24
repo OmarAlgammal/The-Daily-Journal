@@ -5,11 +5,10 @@ import 'package:hive/hive.dart';
 import 'package:mockito/annotations.dart';
 import 'package:the_daily_journal/services/firebase_auth_service.dart';
 import 'package:the_daily_journal/services/local_services.dart';
-import 'package:the_daily_journal/services/news_service.dart';
 
 @GenerateMocks([
   Dio,
-  BaseNewsService,
+  // BaseNewsService,
   BaseLocalServices,
   HiveInterface,
   Box,
