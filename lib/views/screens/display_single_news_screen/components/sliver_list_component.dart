@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_daily_journal/models/news_model.dart';
+import 'package:the_daily_journal/views/widgets/my_cached_network_image.dart';
 
 import '../../../../utils/constance/gaps.dart';
 import '../../../widgets/authentication_mark.dart';

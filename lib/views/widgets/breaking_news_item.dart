@@ -35,11 +35,9 @@ class BreakingNewsItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
             child: Opacity(
               opacity: .5,
-              child: MyCachedNetworkImage(
-                imageUrl: news.imageUrl,
-                height: context.screenHeight() / 3.5,
-                width: (context.screenWidth() / 10) * 9,
-              ),
+
+              child: MyCachedNetworkImage(imageUrl: news.imageUrl, height: context.screenHeight() / 3.5,
+                width: (context.screenWidth() / 10) * 9,),
             ),
           ),
         ),

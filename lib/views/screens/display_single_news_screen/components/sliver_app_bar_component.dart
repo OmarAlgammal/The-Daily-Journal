@@ -3,16 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_daily_journal/models/news_model.dart';
 import 'package:the_daily_journal/repositories/local_repository.dart';
 import 'package:the_daily_journal/utils/extensions/context_extension.dart';
+import 'package:the_daily_journal/utils/helpers/date_factory.dart';
+import 'package:the_daily_journal/views/widgets/my_cached_network_image.dart';
 
 import '../../../../services_locator/services_locator.dart';
 import '../../../../utils/constance/gaps.dart';
 import '../../../../utils/constance/icons.dart';
-import '../../../../utils/helpers/date_factory.dart';
 import '../../../../utils/theme/colors.dart';
 import '../../../../view_model/bookmarks_cubit/bookmark_cubit.dart';
 import '../../../../view_model/bookmarks_cubit/bookmark_states.dart';
 import '../../../widgets/circular_icon.dart';
-import '../../../widgets/my_cached_network_image.dart';
 
 class SliverAppBarComponent extends StatelessWidget {
   const SliverAppBarComponent({Key? key, required this.news}) : super(key: key);

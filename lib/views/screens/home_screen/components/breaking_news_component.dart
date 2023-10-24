@@ -2,11 +2,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:the_daily_journal/routing/routes.dart';
 import 'package:the_daily_journal/utils/enums/news_categories.dart';
+import 'package:the_daily_journal/views/widgets/news_list.dart';
 
 import '../../../../models/news_model.dart';
 import '../../../../utils/constance/gaps.dart';
 import '../../../widgets/breaking_news_item.dart';
-import '../../../widgets/news_list.dart';
 import '../../../widgets/news_title.dart';
 
 class BreakingNewsComponent extends StatefulWidget {
