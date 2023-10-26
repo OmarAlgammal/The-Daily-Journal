@@ -20,6 +20,6 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NewsCubit.instance(context).fetchNewsByCategory(category: _category);
-    return NewsList(newsCategories: _category, showPadding: true,);
+    return NewsList(category: _category, usePadding: true,);
   }
 }

@@ -17,12 +17,12 @@ class RecommendationsNewsComponent extends StatelessWidget {
         NewsTitle(
           title: 'Recommendations',
           showButton: false,
-          allowPadding: true,
         ),
         Padding(
             padding: paddingH16,
             child: NewsList(
-              newsCategories: NewsCategories.all,
+              category: NewsCategories.all,
+              usePadding: false,
             )),
       ],
     );

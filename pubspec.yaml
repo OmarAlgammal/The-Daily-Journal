@@ -61,6 +61,7 @@ dependencies:
   either_dart: ^1.0.0
   cached_network_image: ^3.2.3
   path_provider: ^2.1.1
+  flutter_native_splash: ^2.3.4
 
 dev_dependencies:
   flutter_test:
@@ -86,3 +87,7 @@ flutter:
 
   assets:
     - assets/google.svg
+    - assets/the-daily-journal-logo-light.png
+    - assets/the-daily-journal-logo-dark.png
+
+

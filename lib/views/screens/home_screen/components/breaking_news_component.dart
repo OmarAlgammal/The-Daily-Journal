@@ -29,12 +29,11 @@ class _BreakingNewsComponentState extends State<BreakingNewsComponent> {
       children: [
         const NewsTitle(
           title: 'Breaking News',
-          allowPadding: true,
         ),
         NewsList(
-          newsCategories: NewsCategories.emirates,
+          category: NewsCategories.emirates,
           child: (news) => breakingNewsWidget(news),
-          showPadding: true,
+          usePadding: false,
         ),
       ],
     );

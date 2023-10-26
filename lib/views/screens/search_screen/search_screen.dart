@@ -10,7 +10,7 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SearchScreenAppBarComponent(),
-      body: const NewsList(newsCategories: NewsCategories.search),
+      body: const NewsList(category: NewsCategories.search),
     );
   }
 }

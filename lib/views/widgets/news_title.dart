@@ -7,17 +7,17 @@ class NewsTitle extends StatelessWidget {
     Key? key,
     required this.title,
     this.showButton = true,
-    this.allowPadding = true,
+    this.usePadding = true,
   }) : super(key: key);
 
   final String title;
   final bool showButton;
-  final bool allowPadding;
+  final bool usePadding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: allowPadding ? AppPadding.screenPadding : EdgeInsets.zero,
+      padding: usePadding ? AppPadding.screenPadding : EdgeInsets.zero,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

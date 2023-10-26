@@ -1,0 +1,8 @@
+flutter_native_splash:
+  color: '#FFFFFF'
+  color_dark: '#000000'
+  image: assets/the-daily-journal-logo-light.png
+  image_dark: assets/the-daily-journal-logo-dark.png
+
+
+  web: false

@@ -18,8 +18,7 @@ class HotIssueScreen extends StatelessWidget {
         title: Text(category.title),
       ),
       body: NewsList(
-        newsCategories: category,
-        showPadding: true,
+        category: category,
       ),
     );
   }
