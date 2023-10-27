@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_daily_journal/core/network/erorrs/server_failure.dart';
+import 'package:the_daily_journal/utils/extensions/context_extension.dart';
 
 import '../../models/news_model.dart';
 import '../../utils/constance/gaps.dart';
@@ -8,7 +8,6 @@ import '../../utils/constance/padding/app_padding.dart';
 import '../../utils/enums/news_categories.dart';
 import '../../view_model/news_cubit/news_cubit.dart';
 import '../../view_model/news_cubit/news_states.dart';
-import 'my_circular_progress_indicator.dart';
 import 'news_item.dart';
 
 class NewsList extends StatelessWidget {
@@ -28,8 +27,9 @@ class NewsList extends StatelessWidget {
     return Padding(
       padding: usePadding ? AppPadding.screenPadding : EdgeInsets.zero,
       child: BlocBuilder<NewsCubit, NewsState>(
-        buildWhen: (context, state){
-          if (state is NewsLoadedSuccessfully && category == state.category) return true;
+        buildWhen: (context, state) {
+          debugPrint('state is $state');
+          if (state.category == category) return true;
           return false;
         },
         builder: (context, state) {
@@ -45,17 +45,26 @@ class NewsList extends StatelessWidget {
                 );
           }
 
-          if (state is NoInternetConnection) {
-            return const SizedBox(
-                height: 56,
-                width: 56,
-                child: Icon(Icons.signal_wifi_connected_no_internet_4));
-          }
           if (state is FailedToLoadNews) {
-            return Text('Error: ${state.message}');
+            return Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    if (state.icon != null) Icon(state.icon, size: 56,),
+                    gap8,
+                    Text(state.message, style: context.textTheme.titleLarge,),
+                  ],
+                ),
+              ),
+            );
           }
 
-          return const MyCircularProgressIndicator();
+          return const Center(
+            child: SizedBox.square(
+                dimension: 36, child: CircularProgressIndicator()),
+          );
         },
       ),
     );

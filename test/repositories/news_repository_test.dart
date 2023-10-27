@@ -2,7 +2,7 @@ import 'package:either_dart/either.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:the_daily_journal/core/network/api_constance.dart';
-import 'package:the_daily_journal/core/network/erorrs/server_failure.dart';
+import 'package:the_daily_journal/core/network/exceptions/server_exception.dart';
 import 'package:the_daily_journal/models/news_model.dart';
 import 'package:the_daily_journal/repositories/news_repository.dart';
 import 'package:the_daily_journal/services/news_service.dart';
@@ -26,12 +26,12 @@ class MockBaseNewsService extends Mock implements BaseNewsService {
   ];
 
   @override
-  Future<Either<ServerFailure, T>> fetchData<T>(
+  Future<Either<MyException, T>> fetchData<T>(
       {required String path, required DataBuilder<T> builder}) async {
     if (rightValue) {
       return Right(news as T);
     } else {
-      return Left(ServerFailure('error'));
+      return const Left(NoInternetConnectionException(message: 'error'));
     }
   }
 }
@@ -60,9 +60,7 @@ void main() {
   });
 
   group('fetchNewsByCategory()', () {
-    test(
-        'fetchNewsByCategory() should return List<NewsModel>',
-        () async {
+    test('fetchNewsByCategory() should return List<NewsModel>', () async {
       // Arrange
       mockBaseNewsService.rightValue = true;
       //Act
@@ -73,16 +71,16 @@ void main() {
       expect(result, isA<Right>());
     });
 
-    test('fetchNewsByCategory() should return Left<ServerFailure>', () async{
+    test('fetchNewsByCategory() should return Left<ServerFailure>', () async {
       // Arrange
       mockBaseNewsService.rightValue = false;
 
       // Act
-      final result = await newsRepository.fetchNewsByCategory(path: ApiConstance.allNewsPath(), category: NewsCategories.search);
+      final result = await newsRepository.fetchNewsByCategory(
+          path: ApiConstance.allNewsPath(), category: NewsCategories.search);
 
       // Assert
       expect(result, isA<Left>());
-
     });
   });
 }

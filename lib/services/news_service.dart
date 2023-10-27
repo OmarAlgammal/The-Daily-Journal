@@ -1,13 +1,15 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
-import 'package:the_daily_journal/core/network/erorrs/server_failure.dart';
+import 'package:the_daily_journal/utils/constance/icons.dart';
 
-import '../core/network/erorrs/exceptions.dart';
+import '../core/network/exceptions/server_exception.dart';
 
 typedef DataBuilder<T> = T Function(List<Map<String, dynamic>> maps);
 
 abstract class BaseNewsService {
-  Future<Either<Failure, T>> fetchData<T>({
+  Future<Either<MyException, T>> fetchData<T>({
     required String path,
     required DataBuilder<T> builder,
   });
@@ -19,7 +21,7 @@ class NewsService implements BaseNewsService {
   NewsService(this._dio);
 
   @override
-  Future<Either<Failure, T>> fetchData<T>({
+  Future<Either<MyException, T>> fetchData<T>({
     required String path,
     required DataBuilder<T> builder,
   }) async {
@@ -32,15 +34,25 @@ class NewsService implements BaseNewsService {
 
       /// TODO: Refactor error code
     } on DioException catch (e) {
-      return switch(e){
-      DioExceptionType.connectionError =>  const Left(NoInternetConnection('No internet connection')),
-      _ => const Left(ServerFailure('No internet connection')),
-      };
-    }
-    on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
+      if (e.error is SocketException) {
+        return const Left(NoInternetConnectionException(
+          message: 'No internet',
+          icon: AppIcons.noInternetIcon,
+        ));
+      } else if (e.type == DioExceptionType.connectionError) {
+        // Handle HTTP response errors (e.g., 404, 500, etc.) here if needed.
+        return Left(ServerException(
+          message: 'Error : ${e.message}',
+        ));
+      } else {
+        return Left(ServerException(
+          message: 'Error : ${e.toString()}',
+        ));
+      }
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerException(
+        message: 'Error : ${e.toString()}',
+      ));
     }
   }
 }

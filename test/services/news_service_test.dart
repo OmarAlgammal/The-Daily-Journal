@@ -3,7 +3,7 @@ import 'package:either_dart/either.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:the_daily_journal/core/network/api_constance.dart';
-import 'package:the_daily_journal/core/network/erorrs/server_failure.dart';
+import 'package:the_daily_journal/core/network/exceptions/server_exception.dart';
 import 'package:the_daily_journal/services/news_service.dart';
 
 import '../mock_helpers/json_helper/json_reader.dart';
@@ -46,10 +46,10 @@ void main() {
       // Act
       final result = await newsService.fetchData(
           path: ApiConstance.allNewsPath(),
-          builder: (maps) => const Left(ServerFailure('error')));
+          builder: (maps) => Left(ServerException(message: 'error')));
 
       // Assert
-      expect(result, const Left(ServerFailure('error')));
+      expect(result, Left(ServerException(message: 'error')));
     });
   });
 }

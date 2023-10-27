@@ -26,4 +26,6 @@ class AppIcons{
   static const addIcon = Icons.add;
   static const checkIcon = Icons.check_rounded;
 
+  static const noInternetIcon =  Icons.signal_wifi_connected_no_internet_4_outlined;
+
 }

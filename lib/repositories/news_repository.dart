@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:the_daily_journal/services/news_service.dart';
 import 'package:the_daily_journal/utils/enums/news_categories.dart';
 
-import '../core/network/erorrs/server_failure.dart';
+import '../core/network/exceptions/server_exception.dart';
 import '../models/news_model.dart';
 
 abstract class BaseNewsRepository {
-  Future<Either<Failure, List<NewsModel>>> fetchNewsByCategory({
+  Future<Either<MyException, List<NewsModel>>> fetchNewsByCategory({
     required String path,
     required NewsCategories category,
   });
@@ -19,7 +19,7 @@ class NewsRepository implements BaseNewsRepository {
   NewsRepository(this._baseNewsService);
 
   @override
-  Future<Either<Failure, List<NewsModel>>> fetchNewsByCategory({
+  Future<Either<MyException, List<NewsModel>>> fetchNewsByCategory({
     required String path,
     required NewsCategories category,
   }) async {
@@ -37,7 +37,6 @@ class NewsRepository implements BaseNewsRepository {
 
     return result.fold((left) => Left(left), (right) {
       cache[category] = right;
-      debugPrint('News Repository : Last >> ${cache.keys.toString()}');
       return Right(right);
     });
   }

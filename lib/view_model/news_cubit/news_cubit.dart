@@ -8,20 +8,19 @@ import '../../repositories/news_repository.dart';
 class NewsCubit extends Cubit<NewsState> {
   final BaseNewsRepository _baseNewsApiDatabase;
 
-  NewsCubit(this._baseNewsApiDatabase) : super(NewsState.newsLoading());
+  NewsCubit(this._baseNewsApiDatabase) : super(NewsLoading());
 
   static NewsCubit instance(context) => BlocProvider.of<NewsCubit>(context);
 
   void fetchNewsByCategory({required category, String? query, String? sort}) {
-    emit(NewsLoading());
+    emit(NewsLoading(category: category));
     final path = _getCategoryPath(category, query, sort);
     _baseNewsApiDatabase
         .fetchNewsByCategory(path: path, category: category)
         .then((value) => value.fold(
-            (left) => left is FailedToLoadNews
-                ? emit(FailedToLoadNews(left.message))
-                : emit(InternetConnectionFailed('No internet connection')),
-            (right) => emit(NewsLoadedSuccessfully(right, category))));
+            (left) =>
+                emit(FailedToLoadNews(category: category, message: left.message, icon: left.icon)),
+            (right) => emit(NewsLoadedSuccessfully(category: category, news: right,))));
   }
 
   String _getCategoryPath(
