@@ -1,4 +1,4 @@
-# The Journal News App
+# The Daily Journal
 
 The Journal News App is a news reader app with a simple and amazing design, powered by Flutter. The
 app uses the Clean Architecture pattern for its structure, with BLoC (Business Logic Component) for
