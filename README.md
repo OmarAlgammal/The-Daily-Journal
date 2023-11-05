@@ -7,6 +7,23 @@ integrates with an API to fetch news data and uses Firebase for user authenticat
 storage. Additionally, the app includes features like light and dark themes and supports multiple
 languages.
 
+## Technical highlights
+🧩 Object-Oriented Programming (OOP): I designed [Your News App Name] with a strong foundation in OOP principles. This approach enabled a modular and maintainable codebase, making it easier to expand and enhance the app over time.
+
+🛠️ SOLID Principles: Applying SOLID principles allowed me to create a scalable, robust, and adaptable architecture. It's the secret sauce behind the app's stability and extensibility.
+
+🌐 Design Patterns: I implemented various design patterns, optimizing key components of the app. Patterns like [mention specific design patterns used] helped us solve complex problems with elegant, reusable solutions.
+
+🧪 Test-Driven Development (TDD): Ensuring the app's reliability was paramount. I wrote test code that covered a wide range of scenarios, guaranteeing that [Your News App Name] delivers a seamless experience for users.
+
+🌟 User-Centric Design: The user experience was at the core of our development process. The result is a sleek, intuitive, and visually appealing app that keeps users engaged.
+
+🌐 API Integration: Dealing with external data sources was a central challenge. I successfully integrated APIs, ensuring that [Your News App Name] always delivers up-to-date news and information.
+
+💾 Local Data Storage: To improve user experience, I implemented efficient data storage mechanisms, making it possible for users to access their favorite content offline.
+
+🔐 Sign-In Feature: Privacy and security were non-negotiable. The app features a robust sign-in mechanism, safeguarding user data and ensuring a personalized experience.
+
 ## Screenshots
 
 <div>
@@ -26,25 +43,6 @@ to browse news articles, filter them by category or keyword, and search for spec
 can also bookmark articles for later reading and switch between light and dark themes. The app also
 supports multiple languages, which can be selected from the settings menu.
 
-## Reporting Errors
-
-If you encounter an error or a bug while using the app, please follow these steps:
-
-* Open the app's settings menu
-* Tap on the "Report an Issue" button
-* Fill out the form with a detailed
-* description of the error
-* Submit the form.
-
-We appreciate your feedback and will work to address any issues as soon as possible.
-
-## Contributing
-
-If you would like to contribute to the app, you can follow these steps:
-
-* Fork this repository
-* Make changes to the codebase
-* Submit a pull request
 
 ## Credits
 
