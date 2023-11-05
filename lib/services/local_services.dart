@@ -36,7 +36,7 @@ class LocalServices implements BaseLocalServices {
 
   @override
   Box<NewsModel> getBox() {
-    return _box as Box<NewsModel>;
+    return _box;
   }
 
   @override

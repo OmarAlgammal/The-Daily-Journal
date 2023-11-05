@@ -5,7 +5,7 @@ import 'package:the_daily_journal/services/local_services.dart';
 import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
 import '../mock_helpers/mock_generations.mocks.dart';
 import '../mock_helpers/utils/post_expextations.dart';
-import 'my_path_provider.dart';
+import '../mock_helpers/my_path_provider.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

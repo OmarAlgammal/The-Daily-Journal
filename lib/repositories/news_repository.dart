@@ -1,5 +1,4 @@
 import 'package:either_dart/either.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:the_daily_journal/services/news_service.dart';
 import 'package:the_daily_journal/utils/enums/news_categories.dart';
 
