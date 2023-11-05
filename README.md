@@ -49,7 +49,7 @@ supports multiple languages, which can be selected from the settings menu.
 The app uses the following third-party packages and resources:
 
 * Flutter framework
-* BLoC library for state management
+* BLoC & Provider libraries for state management
 * Firebase for user authentication and data storage
 * Dio to deal with API for news data
 * Google Fonts for font styles
