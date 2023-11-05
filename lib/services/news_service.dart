@@ -32,7 +32,6 @@ class NewsService implements BaseNewsService {
       return Right(
           builder(result.map((e) => e as Map<String, dynamic>).toList()));
 
-      /// TODO: Refactor error code
     } on DioException catch (e) {
       if (e.error is SocketException) {
         return const Left(NoInternetConnectionException(
