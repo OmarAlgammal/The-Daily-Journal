@@ -8,17 +8,17 @@ storage. Additionally, the app includes features like light and dark themes and 
 languages.
 
 ## Technical highlights
-🧩 Object-Oriented Programming (OOP): I designed [Your News App Name] with a strong foundation in OOP principles. This approach enabled a modular and maintainable codebase, making it easier to expand and enhance the app over time.
+🧩 Object-Oriented Programming (OOP): I designed The Daily Journal with a strong foundation in OOP principles. This approach enabled a modular and maintainable codebase, making it easier to expand and enhance the app over time.
 
 🛠️ SOLID Principles: Applying SOLID principles allowed me to create a scalable, robust, and adaptable architecture. It's the secret sauce behind the app's stability and extensibility.
 
-🌐 Design Patterns: I implemented various design patterns, optimizing key components of the app. Patterns like [mention specific design patterns used] helped us solve complex problems with elegant, reusable solutions.
+🌐 Design Patterns: I implemented various design patterns, optimizing key components of the app. Patterns like Singleton helped us solve complex problems with elegant, reusable solutions.
 
-🧪 Test-Driven Development (TDD): Ensuring the app's reliability was paramount. I wrote test code that covered a wide range of scenarios, guaranteeing that [Your News App Name] delivers a seamless experience for users.
+🧪 Test-Driven Development (TDD): Ensuring the app's reliability was paramount. I wrote test code that covered a wide range of scenarios, guaranteeing that The Daily Journal delivers a seamless experience for users.
 
 🌟 User-Centric Design: The user experience was at the core of our development process. The result is a sleek, intuitive, and visually appealing app that keeps users engaged.
 
-🌐 API Integration: Dealing with external data sources was a central challenge. I successfully integrated APIs, ensuring that [Your News App Name] always delivers up-to-date news and information.
+🌐 API Integration: Dealing with external data sources was a central challenge. I successfully integrated APIs, ensuring that The Daily Journal always delivers up-to-date news and information.
 
 💾 Local Data Storage: To improve user experience, I implemented efficient data storage mechanisms, making it possible for users to access their favorite content offline.
 
