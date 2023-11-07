@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:the_daily_journal/models/news_model.dart';
+import 'package:the_daily_journal/repositories/theme_mode_repository.dart';
 import 'package:the_daily_journal/routing/routers.dart';
 import 'package:the_daily_journal/routing/routes.dart';
 import 'package:the_daily_journal/services/local_services.dart';
@@ -14,6 +15,7 @@ import 'package:the_daily_journal/view_model/auth_cubit/auth_cubit.dart';
 import 'package:the_daily_journal/view_model/bookmarks_cubit/bookmark_cubit.dart';
 import 'package:the_daily_journal/view_model/news_cubit/news_cubit.dart';
 import 'package:the_daily_journal/view_model/theme_provider/theme_provider.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,14 +62,14 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (context) => sl<BookmarkCubit>()),
       ],
       child: ChangeNotifierProvider<ThemeProvider>(
-        create: (context) => ThemeProvider(),
+        create: (context) => ThemeProvider(sl<ThemeModeRepository>()),
         child: Builder(
           /// TODO: Refactor app colors in dark theme
           builder: (context) => MaterialApp(
             onGenerateRoute: onGenerate,
             initialRoute: AppRouts.landingScreen,
             debugShowCheckedModeBanner: false,
-            theme: Provider.of<ThemeProvider>(context).themeData,
+            theme: Provider.of<ThemeProvider>(context).themeData(),
             //home: BottomNavScreen(),
           ),
         ),

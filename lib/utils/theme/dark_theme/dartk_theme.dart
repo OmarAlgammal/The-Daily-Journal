@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:the_daily_journal/utils/constance/padding/padding.dart';
 import 'package:the_daily_journal/utils/theme/dark_theme/dark_theme_colors.dart';
 
-ThemeData darkTheme() => ThemeData(
+ThemeData darkTheme = ThemeData(
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

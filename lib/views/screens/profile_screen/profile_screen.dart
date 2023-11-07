@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:the_daily_journal/utils/constance/gaps.dart';
 import 'package:the_daily_journal/utils/constance/padding/padding.dart';
+import 'package:the_daily_journal/utils/theme/dark_theme/dartk_theme.dart';
 import 'package:the_daily_journal/view_model/auth_cubit/auth_cubit.dart';
 import 'package:the_daily_journal/view_model/auth_cubit/auth_states.dart';
 import 'package:the_daily_journal/view_model/theme_provider/theme_provider.dart';
@@ -53,7 +54,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                   value: Provider.of<ThemeProvider>(
                     context,
-                  ).isDarkMode,
+                  ).themeData == darkTheme,
                 ),
               ),
               const Divider(

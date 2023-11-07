@@ -4,7 +4,7 @@ import 'package:the_daily_journal/utils/constance/padding/padding.dart';
 
 import 'light_theme_colors.dart';
 
-ThemeData lightTheme() => ThemeData(
+ThemeData lightTheme = ThemeData(
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

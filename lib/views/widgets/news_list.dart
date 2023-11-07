@@ -36,8 +36,8 @@ class NewsList extends StatelessWidget {
           if (state is NewsLoadedSuccessfully) {
             return child?.call(state.news) ??
                 ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) =>
                       NewsItem(news: state.news[index], showBookmark: false),
                   separatorBuilder: (context, index) => gap12,
