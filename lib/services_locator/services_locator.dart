@@ -31,7 +31,7 @@ void setup() {
   sl.registerLazySingleton(() => LocalServices(sl(),));
   sl.registerSingleton(MySharedPreferences());
 
-  sl.registerSingleton(ThemeModeRepository(sl()));
+  sl.registerSingleton(ThemeModeRepository(sl<MySharedPreferences>()));
   sl.registerLazySingleton(() => LocalDatabase(sl<LocalServices>()));
 
   sl.registerSingleton(AuthCubit(sl<FirebaseAuthentication>()));

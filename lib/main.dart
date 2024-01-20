@@ -9,6 +9,7 @@ import 'package:the_daily_journal/repositories/theme_mode_repository.dart';
 import 'package:the_daily_journal/routing/routers.dart';
 import 'package:the_daily_journal/routing/routes.dart';
 import 'package:the_daily_journal/services/local_services.dart';
+import 'package:the_daily_journal/services/my_shared_preferences.dart';
 import 'package:the_daily_journal/services_locator/services_locator.dart';
 import 'package:the_daily_journal/utils/enums/news_categories.dart';
 import 'package:the_daily_journal/view_model/auth_cubit/auth_cubit.dart';
@@ -16,13 +17,16 @@ import 'package:the_daily_journal/view_model/bookmarks_cubit/bookmark_cubit.dart
 import 'package:the_daily_journal/view_model/news_cubit/news_cubit.dart';
 import 'package:the_daily_journal/view_model/theme_provider/theme_provider.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Hive.registerAdapter(NewsModelAdapter());
 
   setup();
+  await Future.wait([
+    sl<MySharedPreferences>().init(),
+    sl<LocalServices>().init(),
+  ]);
 
   runApp(const MyApp());
 }
@@ -35,12 +39,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    sl<LocalServices>().init();
-    super.initState();
-  }
-
   @override
   void dispose() {
     sl<LocalServices>().closeBox();
@@ -56,7 +54,7 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => sl<NewsCubit>()
-          ..fetchNewsByCategory(category: NewsCategories.emirates)
+            ..fetchNewsByCategory(category: NewsCategories.emirates)
             ..fetchNewsByCategory(category: NewsCategories.all),
         ),
         BlocProvider(create: (context) => sl<BookmarkCubit>()),
@@ -66,12 +64,10 @@ class _MyAppState extends State<MyApp> {
         child: Builder(
           /// TODO: Refactor app colors in dark theme
           builder: (context) => MaterialApp(
-            onGenerateRoute: onGenerate,
-            initialRoute: AppRouts.landingScreen,
-            debugShowCheckedModeBanner: false,
-            theme: Provider.of<ThemeProvider>(context).themeData(),
-            //home: BottomNavScreen(),
-          ),
+              onGenerateRoute: onGenerate,
+              initialRoute: AppRouts.landingScreen,
+              debugShowCheckedModeBanner: false,
+              theme: Provider.of<ThemeProvider>(context).themeData),
         ),
       ),
     );

@@ -10,22 +10,23 @@ class ThemeProvider extends ChangeNotifier{
 
   ThemeData? _themeData;
 
-  ThemeData themeData (){
-    return _themeData ??  (baseLocalUtilsDatabase.themeIsDark() ? darkTheme : lightTheme);
-  }
 
-  BaseThemeModeRepository baseLocalUtilsDatabase;
+  ThemeData get themeData =>
+  _themeData ?? (_baseThemeModeRepository.themeIsDark() ? darkTheme : lightTheme);
 
-  ThemeProvider(this.baseLocalUtilsDatabase);
+
+  BaseThemeModeRepository _baseThemeModeRepository;
+
+  ThemeProvider(this._baseThemeModeRepository);
 
 
   void toggleThemeMode(){
     if (_themeData == lightTheme){
       _themeData = darkTheme;
-      baseLocalUtilsDatabase.setDarkThemeValue(value: true);
+      _baseThemeModeRepository.setDarkThemeValue(value: true);
     }else{
       _themeData = lightTheme;
-      baseLocalUtilsDatabase.setDarkThemeValue(value: false);
+      _baseThemeModeRepository.setDarkThemeValue(value: false);
     }
     notifyListeners();
   }
